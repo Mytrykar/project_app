@@ -1,4 +1,4 @@
-part of 'example_view.dart';
+part of 'example_screen.dart';
 
 class _Watch extends GetView<ExampleViewController> {
   @override

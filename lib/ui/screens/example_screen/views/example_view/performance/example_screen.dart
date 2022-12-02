@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:project_app/app/core/base/base_screen.dart';
 import 'package:project_app/app/core/base/base_view_controller.dart';
 import 'package:project_app/ui/screens/example_screen/performance/example_screen.dart';
-import 'package:project_app/ui/screens/example_screen/views/example_view/performance/view_controller.dart';
+import 'package:project_app/ui/screens/example_screen/views/example_view/performance/screen_controller.dart';
 import 'package:project_app/ui/widgets/dumb/erros_build_view.dart';
 
 part '_desktop.dart';

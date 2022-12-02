@@ -1,15 +1,12 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:project_app/ui/screens/example_screen/performance/example_screen.dart';
 
-import 'package:project_app/ui/views/home/home_view.dart';
-import 'package:project_app/ui/views/startup/startup_view.dart';
-
-export './router.gr.dart';
+part 'router.g.dart';
 
 @AdaptiveAutoRouter(
   replaceInRouteName: "View,Route",
   routes: <AutoRoute>[
-    AdaptiveRoute(page: StartupView, initial: true),
-    AdaptiveRoute(page: HomeView),
+    AdaptiveRoute(page: ExampleScreen(), initial: true),
   ],
 )
-class $project_appRouter {}
+class $AppRouter {}

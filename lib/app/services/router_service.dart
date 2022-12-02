@@ -1,7 +1,7 @@
-import "package:injectable/injectable.dart";
-import "package:project_app/app/router/router.dart";
+import 'package:project_app/app/core/base/base_servise.dart';
 
-@lazySingleton
-class RouterService {
-  final project_appRouter router = project_appRouter();
+class RouterService extends BaseService {
+  final AppRouter router = AppRouter();
+
+  RouterService(super.title);
 }
