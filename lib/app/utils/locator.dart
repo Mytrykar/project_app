@@ -10,7 +10,7 @@ class LocatorInjector {
   static Logger log = getLogger('LocatorInjector');
 
   static Future<void> setupLocator() async {
-    log.d('Initializing Navigator Service');
-    locator.registerLazySingleton(() => NavigatorService("NavigatorSirvise"));
+    // log.d('Initializing Navigator Service');
+    // locator.registerLazySingleton(() => NavigatorService("NavigatorSirvise"));
   }
 }
