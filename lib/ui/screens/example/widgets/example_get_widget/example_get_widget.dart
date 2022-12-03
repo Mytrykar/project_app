@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
-import 'package:project_app/ui/screens/example_screen/performance/screen_controller.dart';
+import 'package:project_app/ui/screens/example/performance/screen_controller.dart';
 
 class ExampleGetWidget extends GetView<ExampleScreenController> {
   const ExampleGetWidget({super.key});

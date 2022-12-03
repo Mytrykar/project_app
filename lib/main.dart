@@ -1,10 +1,13 @@
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
-// import 'package:project_app/app/app.dart';
+import 'package:project_app/app/app.dart';
 
-// main() {
-//   WidgetsFlutterBinding.ensureInitialized();
+import 'app/utils/locator.dart';
 
-//   /// Runs the app :)
-//   runApp(ProjectApp());
-// }
+main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await LocatorInjector.setupLocator();
+
+  /// Runs the app :)
+  runApp(const ProjectApp());
+}

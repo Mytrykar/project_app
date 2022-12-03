@@ -1,6 +1,6 @@
 part of 'bloc.dart';
 
-class ExampleState extends Equatable {
+abstract class ExampleState extends Equatable {
   @override
   // TODO: implement props
   List<Object?> get props => [];
@@ -12,4 +12,8 @@ class LoadingState extends ExampleState {}
 
 class DoneState extends ExampleState {
   final String data = "data";
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [data];
 }
