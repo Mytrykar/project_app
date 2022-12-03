@@ -4,15 +4,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logger/logger.dart';
-import 'package:project_app/app/core/base/base_screen.dart';
 import 'package:project_app/app/utils/logger.dart';
-import 'package:project_app/ui/screens/example_screen/index.dart';
+import 'package:project_app/ui/screens/home/performance/home_view.dart';
 import 'package:project_app/ui/widgets/dumb/error_screen.dart';
 
-part 'gen/path_route.dart';
-part 'gen/title_route.dart';
-part 'gen/route_builder.dart';
 part 'observer.dart';
+part 'router.g.dart';
+//Gen_routes_with_cli
+part 'routes/home_route.dart';
+part 'routes/example_route.dart';
 
 /// Routing generated, do not remove comments
 class AppRouter {
@@ -20,7 +20,7 @@ class AppRouter {
   static GoRouter get router => _router;
 
   static final GoRouter _router = GoRouter(
-    routes: _routes,
+    routes: $appRoutes,
     observers: _observers,
     errorBuilder: (context, state) => const ErrorScreen(),
   );
@@ -30,22 +30,3 @@ class AppRouter {
     return null;
   }
 }
-
-// !Gen_routes
-final _routes = <GoRoute>[
-  // [PathRoute] = project_app/
-  // GoRoute(
-  //     name: TitleRoute.home, path: PathRoute.home, builder: RouteBuilder.home),
-];
-
-// @TypedGoRoute<HomeRoute>(
-//   path: '/',
-  
-// );
-
-// class HomeRoute extends GoRouteData {
-//   const HomeRoute();
-
-//   @override
-//   Widget build(BuildContext context) => const HomeScreen();
-// }

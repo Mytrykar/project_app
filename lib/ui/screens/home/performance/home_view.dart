@@ -9,8 +9,8 @@ part '_mobile.dart';
 part '_tablet.dart';
 part '_watch.dart';
 
-class HomeView extends BaseScreen<HomeViewController> {
-  HomeView({Key? key}) : super(key: key);
+class HomeScreen extends BaseScreen<HomeViewController> {
+  HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
