@@ -1,6 +1,6 @@
-part of 'example_screen.dart';
+part of 'home_view.dart';
 
-class _Watch extends GetView<ExampleViewController> {
+class _Tablet extends GetView<ExampleViewController> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(

@@ -1,6 +1,6 @@
-part of 'example_screen.dart';
+part of 'home_view.dart';
 
-class _Mobile extends GetView<ExampleViewController> {
+class _Desktop extends GetView<ExampleViewController> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
