@@ -9,22 +9,22 @@ part '_mobile.dart';
 part '_tablet.dart';
 part '_watch.dart';
 
-class ExampleScreen extends BaseScreen<ExampleScreenController> {
-  static String routeName = "example/";
+// class ExampleScreen extends BaseScreen<ExampleScreenController> {
+//   static String routeName = "example/";
 
-  ExampleScreen({Key? key}) : super(key: key) {
-    Get.put<ExampleScreenController>(ExampleScreenController(),
-        tag: "screen_controller");
-  }
+//   ExampleScreen({Key? key}) : super(key: key) {
+//     Get.put<ExampleScreenController>(ExampleScreenController(),
+//         tag: "screen_controller");
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return screen.responsiveValue(
-          desktop: _Desktop(),
-          mobile: _Mobile(),
-          tablet: _Tablet(),
-          watch: _Watch(),
-        ) ??
-        const ErrorBuildViewWidget();
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return screen.responsiveValue(
+//           desktop: _Desktop(),
+//           mobile: _Mobile(),
+//           tablet: _Tablet(),
+//           watch: _Watch(),
+//         ) ??
+//         const ErrorBuildViewWidget();
+//   }
+// }

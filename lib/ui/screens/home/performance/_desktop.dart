@@ -1,6 +1,6 @@
 part of 'home_view.dart';
 
-class _Desktop extends GetView<ExampleViewController> {
+class _Desktop extends GetView<HomeViewController> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(

@@ -17,7 +17,7 @@ class HomeView extends BaseScreen<HomeViewController> {
     return GetX(
         init: HomeViewController(),
         autoRemove: true,
-        tag: context.,
+        // tag: context.,
         builder: (i) => screen.responsiveValue(
               desktop: _Desktop(),
               mobile: _Mobile(),

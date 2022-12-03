@@ -2,6 +2,6 @@
 part of '../router.dart';
 
 class RouteBuilder {
-  static BaseScreen home(BuildContext context, GoRouterState state) =>
-      ExampleScreen();
+  // static BaseScreen home(BuildContext context, GoRouterState state) =>
+  // ExampleScreen();
 }

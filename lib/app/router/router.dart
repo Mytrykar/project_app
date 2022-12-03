@@ -34,6 +34,18 @@ class AppRouter {
 // !Gen_routes
 final _routes = <GoRoute>[
   // [PathRoute] = project_app/
-  GoRoute(
-      name: TitleRoute.home, path: PathRoute.home, builder: RouteBuilder.home),
+  // GoRoute(
+  //     name: TitleRoute.home, path: PathRoute.home, builder: RouteBuilder.home),
 ];
+
+// @TypedGoRoute<HomeRoute>(
+//   path: '/',
+  
+// );
+
+// class HomeRoute extends GoRouteData {
+//   const HomeRoute();
+
+//   @override
+//   Widget build(BuildContext context) => const HomeScreen();
+// }

@@ -1,6 +1,6 @@
 part of 'home_view.dart';
 
-class _Mobile extends GetView<ExampleViewController> {
+class _Mobile extends GetView<HomeViewController> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
