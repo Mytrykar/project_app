@@ -1,6 +1,11 @@
 {
     "Home": "/",
-    "Example":<String, String>[
-        "Home":"",
-    ]
+    "Example":"/Example",
+    "@Example":{
+        "Example2" : "/list",
+        "Example3" : "/list",
+        "@Example3":{
+            "Example2" : "/list"
+        }
+    }
 }
