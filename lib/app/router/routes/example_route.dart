@@ -14,7 +14,7 @@ part of '../router.dart';
   routes: <TypedGoRoute<GoRouteData>>[
     TypedGoRoute<ExampleRoute2>(
       path: 'example2/:tag',
-    )
+    ),
   ],
 )
 class ExampleRoute extends GoRouteData {
