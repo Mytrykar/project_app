@@ -13,7 +13,7 @@ part of '../router.dart';
   path: '/example',
   routes: <TypedGoRoute<GoRouteData>>[
     TypedGoRoute<ExampleRoute2>(
-      path: 'example2/:tag',
+      path: 'example2/{:tag}{:goo}',
     ),
   ],
 )
@@ -25,8 +25,9 @@ class ExampleRoute extends GoRouteData {
 }
 
 class ExampleRoute2 extends GoRouteData {
-  const ExampleRoute2(this.tag);
+  const ExampleRoute2(this.tag, this.goo);
   final String tag;
+  final String goo;
 
   @override
   Widget build(BuildContext context) => HomeScreen();
