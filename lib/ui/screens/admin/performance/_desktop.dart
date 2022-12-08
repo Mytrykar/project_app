@@ -1,6 +1,8 @@
 part of 'screen.dart';
 
-class _Desktop extends BaseView<HomeViewController> {
+class _Desktop extends BaseView<AdminController> {
+  @override
+  final String? tag = "AdminPanelController";
   const _Desktop({super.key});
 
   @override
@@ -8,6 +10,8 @@ class _Desktop extends BaseView<HomeViewController> {
         builder: (context, __, _) {
           return Scaffold(
             appBar: AppBar(
+              centerTitle: true,
+              title: const Text("M Y T R Y K A R"),
               actionsIconTheme: context.theme.appBarTheme.actionsIconTheme,
               actions: [
                 Icon(Icons.desktop_windows,
@@ -20,11 +24,17 @@ class _Desktop extends BaseView<HomeViewController> {
               ],
             ),
             backgroundColor: context.theme.backgroundColor,
-            body: Center(
-                child: Text(
-              "Desktop Layout",
-              style: context.theme.textTheme.headline1,
-            )),
+            body: Row(
+              children: [
+                SizedBox(
+                    child: const ColoredBox(color: Colors.black), width: 30.w),
+                Center(
+                    child: Text(
+                  "Desktop Layout",
+                  style: context.theme.textTheme.headline1,
+                )),
+              ],
+            ),
           );
         },
       );

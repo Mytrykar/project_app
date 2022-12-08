@@ -9,12 +9,11 @@
 
 part of '../router.dart';
 
-@TypedGoRoute<RootRoute>(
-  path: '/{tag:}',
+@TypedGoRoute<AdminRoute>(
+  path: '/admin-panel',
 )
-class RootRoute extends GoRouteData {
-  const RootRoute(this.tag);
-  final String tag;
+class AdminRoute extends GoRouteData {
+  const AdminRoute();
   @override
-  Widget build(BuildContext context) => HomeScreen(tag);
+  Widget build(BuildContext context) => AdminScreen();
 }

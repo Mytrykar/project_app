@@ -1,7 +1,9 @@
 part of 'screen.dart';
 
-class _Tablet extends GetView<HomeViewController> {
-  const _Tablet({super.key});
+class _Watch extends BaseView<AdminController> {
+  @override
+  final String? tag = "AdminPanelController";
+  const _Watch({super.key});
   @override
   Widget build(BuildContext _) => ResponsiveSizer(
         builder: (context, orientation, _) {
@@ -10,12 +12,12 @@ class _Tablet extends GetView<HomeViewController> {
               actionsIconTheme: context.theme.appBarTheme.actionsIconTheme,
               actions: [
                 const Icon(Icons.desktop_windows),
-                Icon(Icons.tablet,
+                const Icon(Icons.tablet),
+                const Icon(Icons.phone_android),
+                Icon(Icons.watch,
                     color: locator<ThemeServise>()
                         .current(context)
-                        .currentLayoutcolor),
-                const Icon(Icons.phone_android),
-                const Icon(Icons.watch)
+                        .currentLayoutcolor)
               ],
             ),
             backgroundColor: orientation == Orientation.portrait
@@ -23,7 +25,7 @@ class _Tablet extends GetView<HomeViewController> {
                 : Colors.blue,
             body: Center(
                 child: Text(
-              "Tablet Layout",
+              "Watch Layout",
               style: context.theme.textTheme.headline1,
             )),
           );

@@ -1,7 +1,9 @@
 part of 'screen.dart';
 
-class _Watch extends BaseView<HomeViewController> {
-  const _Watch({super.key});
+class _Mobile extends GetView<AdminController> {
+  @override
+  final String? tag = "AdminPanelController";
+  const _Mobile({super.key});
   @override
   Widget build(BuildContext _) => ResponsiveSizer(
         builder: (context, orientation, _) {
@@ -11,11 +13,11 @@ class _Watch extends BaseView<HomeViewController> {
               actions: [
                 const Icon(Icons.desktop_windows),
                 const Icon(Icons.tablet),
-                const Icon(Icons.phone_android),
-                Icon(Icons.watch,
+                Icon(Icons.phone_android,
                     color: locator<ThemeServise>()
                         .current(context)
-                        .currentLayoutcolor)
+                        .currentLayoutcolor),
+                const Icon(Icons.watch)
               ],
             ),
             backgroundColor: orientation == Orientation.portrait
@@ -23,7 +25,7 @@ class _Watch extends BaseView<HomeViewController> {
                 : Colors.blue,
             body: Center(
                 child: Text(
-              "Watch Layout",
+              "Mobile Layout",
               style: context.theme.textTheme.headline1,
             )),
           );

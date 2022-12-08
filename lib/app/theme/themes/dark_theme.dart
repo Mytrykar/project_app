@@ -6,8 +6,8 @@ class DarkTheme extends BaseTheme {
             nameTheme: "base_dark",
             brightness: Brightness.dark,
             colorScheme: const ColorScheme.dark(),
-            iconThemeData: IconThemeData(color: Colors.grey, size: 20.dp),
+            iconThemeData: const IconThemeData(color: Colors.grey, size: 20),
             backgroundColor: Colors.black87,
-            headline1: TextStyle(color: Colors.white, fontSize: 25.dp),
+            headline1: const TextStyle(color: Colors.white, fontSize: 25),
             currentLayoutcolor: Colors.blue);
 }

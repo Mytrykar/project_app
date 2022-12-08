@@ -11,10 +11,10 @@ abstract class BaseWidget<ScreenController extends BaseController,
   ///!T! Використовуйте [controller] коли у вас є підконтроллери. Переопреділіть [tag]
   ViewController get controller => GetInstance().find<ViewController>(tag: tag);
 
+  final String? superTag = null;
+
   /// Головний контроллер, використовуйте його для управління підконтроллерами.
   /// Якщо немає підконтроллерів то використовуйте його для управління віджетами.
-  ScreenController get superController {
-    final tag = Get.arguments["tag"] as String;
-    return GetInstance().find<ScreenController>(tag: tag);
-  }
+  ScreenController get superController =>
+      GetInstance().find<ScreenController>(tag: superTag);
 }
