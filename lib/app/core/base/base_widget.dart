@@ -1,11 +1,12 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'base_view_controller.dart';
 
-// ignore: must_be_immutable
-abstract class BaseWidget extends GetView<BaseController> {
+abstract class BaseWidget<T extends BaseController> extends StatelessWidget {
   const BaseWidget({
     super.key,
   });
+  final String? tag = null;
+
+  T get controller => GetInstance().find<T>(tag: tag);
 }

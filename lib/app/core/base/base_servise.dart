@@ -1,12 +1,16 @@
+import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 import 'package:project_app/app/utils/logger.dart';
 
 class BaseService {
-  late Logger log;
-
-  BaseService(String? title) {
-    log = getLogger(
-      title ?? runtimeType.toString(),
-    );
+  Logger? _logger;
+  BaseService(String title) {
+    if (kDebugMode) {
+      _logger = getLogger(title);
+    }
+  }
+  void log(String process) {
+    if (_logger == null) return;
+    _logger!.i(process);
   }
 }
