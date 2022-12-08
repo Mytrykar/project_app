@@ -9,11 +9,10 @@
 
 part of '../router.dart';
 
-@TypedGoRoute<RootRoute>(
-  path: '/',
-)
-class RootRoute extends GoRouteData {
-  const RootRoute();
+@TypedGoRoute<LoginRoute>(path: '/login')
+class LoginRoute extends GoRouteData {
+  const LoginRoute();
+
   @override
   Widget build(BuildContext context) => HomeScreen();
 }

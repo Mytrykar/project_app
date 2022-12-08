@@ -1,6 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
-import 'package:project_app/app/utils/logger.dart';
 
+///!T!Базовий GetXController контроллер. Використовуйте тільки для перебудови віджетів.
+///!T!Напишіть бізнес логіку, та перебудуйте віджет з новими значеннями.
 abstract class BaseController extends GetxController {}

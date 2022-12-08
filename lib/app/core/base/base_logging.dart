@@ -2,28 +2,13 @@ import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 import 'package:project_app/app/utils/logger.dart';
 
-mixin Logging {
+/// !T!Базове логування в режимі розробки, використовуйте щоб провірити правильність потоку данних в методах.
+/// !T!В режимі реліза компілятор не створює об'єкт [Logger].
+class Logging {
   Logger? _logger;
-  initLogging(String title) {
+  Logging(String title) {
     if (kDebugMode) {
       _logger = getLogger(title);
-    }
-  }
-
-  /// [metodName] !T! = протестуйте метод класа.
-  /// []
-  void log(String metodName, int processNumber,
-      {required Object waitResult,
-      required Object result,
-      required Object waitInput,
-      required Object input}) {
-    if (waitInput.toString() != input.toString()) return;
-    if (waitResult.toString() != result.toString()) {
-      _logger!.wtf("""
-В [$metodName] не той результат!
-Очікується: ${waitResult.toString()}
-Результат: ${result}...
-""");
     }
   }
 }

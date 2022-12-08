@@ -13,7 +13,7 @@ part 'router.g.dart';
 // Routing generated, do not remove comments
 //Gen_routes_with_cli
 part 'routes/home_route.dart';
-part 'routes/example_route.dart';
+part 'routes/login_route.dart';
 
 class AppRouter {
   /// use this in [MaterialApp.router]

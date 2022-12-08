@@ -18,7 +18,7 @@ class ThemeServise extends BaseService {
   }
 
   void init() {
-    // TODO Якщо ви використовуєте більше двух тем тоді вам потрібно перевірити чи користувач зберіг іншу тему в памяті
+    // TODO If you use more than two themes then you need to check if the user has saved another theme in memory.
     _currentLightTheme = AppTheme.defaultLightTheme;
     _currendDarkTheme = AppTheme.defaultDarkTheme;
   }
@@ -27,8 +27,7 @@ class ThemeServise extends BaseService {
     BaseTheme? newTheme = AppTheme.themes
         .firstWhereOrNull((element) => element.nameTheme == nameTheme);
     if (newTheme == null) {
-      throw Exception(
-          "Ошибка в названии теми $nameTheme, или она не существует");
+      throw Exception("Topic name error $nameTheme, or it doesn't exist");
     }
     if (nameTheme == _currentLightTheme.nameTheme ||
         nameTheme == _currendDarkTheme.nameTheme) {

@@ -1,14 +1,18 @@
 part of 'home_view.dart';
 
-class _Desktop extends GetView<HomeViewController> {
+class _Desktop extends BaseView<HomeViewController> {
+  const _Desktop({super.key});
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: LayoutBuilder(
-        builder: (p0, p1) {
-          return Container();
+  Widget build(BuildContext _) => ResponsiveSizer(
+        builder: (context, orientation, _) {
+          return Scaffold(
+            appBar: AppBar(),
+            body: Container(
+              color: orientation == Orientation.portrait
+                  ? Colors.black
+                  : Colors.blue,
+            ),
+          );
         },
-      ),
-    );
-  }
+      );
 }

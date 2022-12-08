@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-// TODO В цьому класі ви можете задати начальні настройки теми.
-// Це базова тема додатка, розширьте її щоб створити теми додатка
+// !T!Це базова тема додатка, розширьте її щоб створити теми додатка.
 abstract class BaseTheme {
   final String nameTheme;
   final Brightness brightness;
