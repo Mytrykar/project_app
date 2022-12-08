@@ -10,10 +10,11 @@
 part of '../router.dart';
 
 @TypedGoRoute<RootRoute>(
-  path: '/',
+  path: '/{tag:}',
 )
 class RootRoute extends GoRouteData {
-  const RootRoute();
+  const RootRoute(this.tag);
+  final String tag;
   @override
-  Widget build(BuildContext context) => HomeScreen();
+  Widget build(BuildContext context) => HomeScreen(tag);
 }

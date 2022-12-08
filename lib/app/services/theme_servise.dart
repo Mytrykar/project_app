@@ -17,6 +17,11 @@ class ThemeServise extends BaseService {
     return _currendDarkTheme.theme;
   }
 
+  BaseTheme current(BuildContext context) {
+    if (context.theme.brightness == Brightness.light) return _currentLightTheme;
+    return _currendDarkTheme;
+  }
+
   void init() {
     // TODO If you use more than two themes then you need to check if the user has saved another theme in memory.
     _currentLightTheme = AppTheme.defaultLightTheme;

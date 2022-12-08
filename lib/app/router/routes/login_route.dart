@@ -14,5 +14,5 @@ class LoginRoute extends GoRouteData {
   const LoginRoute();
 
   @override
-  Widget build(BuildContext context) => HomeScreen();
+  Widget build(BuildContext context) => throw ErrorWidget("");
 }

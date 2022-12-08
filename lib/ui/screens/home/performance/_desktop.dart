@@ -1,4 +1,4 @@
-part of 'home_view.dart';
+part of 'screen.dart';
 
 class _Desktop extends BaseView<HomeViewController> {
   const _Desktop({super.key});
@@ -7,15 +7,24 @@ class _Desktop extends BaseView<HomeViewController> {
   Widget build(BuildContext _) => ResponsiveSizer(
         builder: (context, __, _) {
           return Scaffold(
-            appBar: AppBar(),
-            body: Container(
-              color: Colors.black,
-              child: Center(
-                  child: Text(
-                "Mobile Layout",
-                style: TextStyle(color: Colors.white, fontSize: 25.dp),
-              )),
+            appBar: AppBar(
+              actionsIconTheme: context.theme.appBarTheme.actionsIconTheme,
+              actions: [
+                Icon(Icons.desktop_windows,
+                    color: locator<ThemeServise>()
+                        .current(context)
+                        .currentLayoutcolor),
+                const Icon(Icons.tablet),
+                const Icon(Icons.phone_android),
+                const Icon(Icons.watch)
+              ],
             ),
+            backgroundColor: context.theme.backgroundColor,
+            body: Center(
+                child: Text(
+              "Desktop Layout",
+              style: context.theme.textTheme.headline1,
+            )),
           );
         },
       );

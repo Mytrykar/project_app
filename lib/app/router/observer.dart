@@ -1,7 +1,7 @@
 part of 'router.dart';
 
-class _DebugObserver extends NavigatorObserver {
-  Logger log = getLogger("DebugRouteObserver");
+class RouteObserver extends NavigatorObserver {
+  Logger log = getLogger("RouteObserver");
 
   @override
   void didPop(Route route, Route? previousRoute) {

@@ -1,4 +1,4 @@
-part of 'home_view.dart';
+part of 'screen.dart';
 
 class _Watch extends BaseView<HomeViewController> {
   const _Watch({super.key});
@@ -6,17 +6,26 @@ class _Watch extends BaseView<HomeViewController> {
   Widget build(BuildContext _) => ResponsiveSizer(
         builder: (context, orientation, _) {
           return Scaffold(
-            appBar: AppBar(),
-            body: Container(
-              color: orientation == Orientation.portrait
-                  ? Colors.black
-                  : Colors.blue,
-              child: Center(
-                  child: Text(
-                "Watch Layout",
-                style: TextStyle(color: Colors.white, fontSize: 25.dp),
-              )),
+            appBar: AppBar(
+              actionsIconTheme: context.theme.appBarTheme.actionsIconTheme,
+              actions: [
+                const Icon(Icons.desktop_windows),
+                const Icon(Icons.tablet),
+                const Icon(Icons.phone_android),
+                Icon(Icons.watch,
+                    color: locator<ThemeServise>()
+                        .current(context)
+                        .currentLayoutcolor)
+              ],
             ),
+            backgroundColor: orientation == Orientation.portrait
+                ? context.theme.backgroundColor
+                : Colors.blue,
+            body: Center(
+                child: Text(
+              "Watch Layout",
+              style: context.theme.textTheme.headline1,
+            )),
           );
         },
       );

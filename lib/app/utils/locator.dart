@@ -11,6 +11,7 @@ class LocatorInjector {
 
   static Future<void> setupLocator() async {
     log.d('Initializing Theme Service');
-    locator.registerLazySingleton(() => ThemeServise("ThemeServise")..init());
+    locator.registerLazySingleton<ThemeServise>(
+        () => ThemeServise("ThemeServise")..init());
   }
 }

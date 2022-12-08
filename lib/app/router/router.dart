@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logger/logger.dart';
 import 'package:project_app/app/utils/logger.dart';
-import 'package:project_app/ui/screens/home/performance/home_view.dart';
+import 'package:project_app/ui/screens/home/performance/screen.dart';
 import 'package:project_app/ui/widgets/dumb/error_widget.dart' as e;
 
 part 'observer.dart';
@@ -26,7 +26,7 @@ class AppRouter {
   );
 
   static List<NavigatorObserver>? get _observers {
-    if (kDebugMode) return [_DebugObserver()];
+    if (kDebugMode) return [RouteObserver()];
     return null;
   }
 }
