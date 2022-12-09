@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:get/get.dart';
 import 'package:project_app/app/core/base/base_controller.dart';
 import 'package:project_app/app/extensions/context.dart';
 import 'package:project_app/app/utils/constants.dart';
 
-abstract class BaseScreen<T extends BaseController> extends GetView<T>
+abstract class BaseScreen<T extends BaseController> extends StatelessWidget
     with ResponsiveMixin {
   const BaseScreen({super.key});
 }
@@ -15,7 +14,7 @@ mixin ResponsiveMixin on Widget {
   Widget build(BuildContext context) {
     final responsive = context.responsive;
     Widget? widget;
-    if (defaultTargetPlatform == TargetPlatform.macOS ||
+    if (!kIsWeb && defaultTargetPlatform == TargetPlatform.macOS ||
         defaultTargetPlatform == TargetPlatform.iOS) {
       switch (responsive.activeBreakpoint.name) {
         case DeviseScreen.IPHONE:
@@ -47,19 +46,29 @@ mixin ResponsiveMixin on Widget {
           break;
       }
     }
-    assert(widget != null, responsive.activeBreakpoint.name);
+    assert(widget != null,
+        "No implementation for screen ${responsive.activeBreakpoint.name}");
     return widget ?? const SizedBox();
   }
 
+  // @override
+  // Widget superControllerBilding(Widget child) => GetBuilder(
+  //     init: AdminController(),
+  //     autoRemove: false,
+  //     tag: tag,
+  //     initState: (state) => state,
+  //     builder: (i) => child);
+  Widget superControllerBilding(Widget child);
+
   /// Material
-  Widget? desctop_4K();
-  Widget? desktop();
-  Widget? mobile();
-  Widget? tablet();
+  Widget? desctop_4K() => null;
+  Widget? desktop() => null;
+  Widget? mobile() => null;
+  Widget? tablet() => null;
 
   /// Cupertino
-  Widget? iPhone();
-  Widget? iPad();
-  Widget? macBook();
-  Widget? iMac();
+  Widget? iPhone() => null;
+  Widget? iPad() => null;
+  Widget? macBook() => null;
+  Widget? iMac() => null;
 }

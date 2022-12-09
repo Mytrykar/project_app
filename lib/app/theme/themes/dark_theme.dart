@@ -9,5 +9,6 @@ class DarkTheme extends BaseTheme {
             iconThemeData: const IconThemeData(color: Colors.grey, size: 20),
             backgroundColor: Colors.black87,
             headline1: const TextStyle(color: Colors.white, fontSize: 25),
-            currentLayoutcolor: Colors.blue);
+            currentLayoutcolor: Colors.blue,
+            drawerThemeData: DrawerThemeData(backgroundColor: Colors.blueGrey));
 }

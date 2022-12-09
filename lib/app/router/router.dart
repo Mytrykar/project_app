@@ -23,9 +23,9 @@ class AppRouter {
     routes: $appRoutes,
     observers: _observers,
     initialLocation: "/admin-panel",
-    redirect: (context, state) {
-      // print(state.location);
-    },
+    // redirect: (context, state) {
+    //   // print(state.location);
+    // },
     errorBuilder: (context, state) => const Scaffold(body: e.ErrorWidget()),
   );
 

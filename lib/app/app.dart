@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:go_router/go_router.dart';
@@ -25,19 +24,16 @@ class ProjectApp extends StatelessWidget {
             darkTheme: locator.get<ThemeServise>().darkTheme,
             themeMode: ThemeMode.system,
             debugShowCheckedModeBanner: false,
-            builder: (context, child) => ResponsiveWrapper.builder(
-                BouncingScrollWrapper.builder(context, child!),
+            builder: (context, child) => ResponsiveWrapper.builder(child,
                 maxWidth: 1200,
                 minWidth: 450,
                 defaultScale: true,
                 breakpoints: [
                   const ResponsiveBreakpoint.resize(450, name: MOBILE),
-                  if (defaultTargetPlatform == TargetPlatform.iOS)
-                    const ResponsiveBreakpoint.autoScale(600, name: PHONE),
-                  const ResponsiveBreakpoint.autoScale(1000, name: TABLET),
+                  const ResponsiveBreakpoint.autoScale(800, name: TABLET),
                   const ResponsiveBreakpoint.resize(1200, name: DESKTOP),
                   const ResponsiveBreakpoint.autoScale(2460,
-                      name: Constants.DESKTOP_4K),
+                      name: DeviseScreen.DESKTOP_4K),
                 ],
                 background: Container(color: const Color(0xFFF5F5F5))),
           ));

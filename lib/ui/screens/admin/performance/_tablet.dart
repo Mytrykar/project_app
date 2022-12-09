@@ -1,9 +1,7 @@
 part of 'screen.dart';
 
-class _Tablet extends GetView<AdminController> {
-  @override
-  final String? tag = "AdminPanelController";
-  const _Tablet({super.key});
+class _Tablet extends BaseView<AdminController> {
+  const _Tablet({super.tag, super.key});
   @override
   Widget build(BuildContext _) => ResponsiveSizer(
         builder: (context, orientation, _) {

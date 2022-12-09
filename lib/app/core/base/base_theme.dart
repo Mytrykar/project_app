@@ -9,9 +9,11 @@ abstract class BaseTheme {
   final Color backgroundColor;
   final TextStyle headline1;
   final Color currentLayoutcolor;
+  final DrawerThemeData drawerThemeData;
 
   const BaseTheme(
-      {required this.currentLayoutcolor,
+      {required this.drawerThemeData,
+      required this.currentLayoutcolor,
       required this.headline1,
       required this.backgroundColor,
       required this.nameTheme,
@@ -24,6 +26,7 @@ abstract class BaseTheme {
         colorScheme: colorScheme,
         brightness: brightness,
         appBarTheme: AppBarTheme(actionsIconTheme: iconThemeData),
+        drawerTheme: drawerThemeData,
         backgroundColor: backgroundColor,
         textTheme: TextTheme(headline1: headline1));
   }

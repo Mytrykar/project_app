@@ -1,9 +1,7 @@
 part of 'screen.dart';
 
-class _Mobile extends GetView<AdminController> {
-  @override
-  final String? tag = "AdminPanelController";
-  const _Mobile({super.key});
+class _Mobile extends BaseView<AdminController> {
+  const _Mobile({super.tag, super.key});
   @override
   Widget build(BuildContext _) => ResponsiveSizer(
         builder: (context, orientation, _) {

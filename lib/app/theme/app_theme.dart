@@ -2,7 +2,6 @@ library app_theme;
 
 import 'package:flutter/material.dart';
 import 'package:project_app/app/core/base/base_theme.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 part 'themes/dark_theme.dart';
 part 'themes/light_theme.dart';
 

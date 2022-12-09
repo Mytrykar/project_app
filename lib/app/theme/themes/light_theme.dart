@@ -12,5 +12,7 @@ class LightTheme extends BaseTheme {
               color: Colors.black,
               fontSize: 25,
             ),
-            currentLayoutcolor: Colors.blue);
+            currentLayoutcolor: Colors.blue,
+            drawerThemeData:
+                const DrawerThemeData(backgroundColor: Colors.black38));
 }

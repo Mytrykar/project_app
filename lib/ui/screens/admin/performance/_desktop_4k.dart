@@ -1,7 +1,8 @@
 part of 'screen.dart';
 
-class _Desktop extends BaseView<AdminController> {
-  const _Desktop({super.tag, super.key});
+// ignore: camel_case_types
+class _Desktop_4K extends BaseView<AdminController> {
+  const _Desktop_4K({super.tag, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,9 +12,12 @@ class _Desktop extends BaseView<AdminController> {
         title: const Text("M Y T R Y K A R"),
         actionsIconTheme: context.theme.appBarTheme.actionsIconTheme,
         actions: [
-          Icon(Icons.desktop_windows,
+          Icon(Icons.four_k,
               color:
                   locator<ThemeServise>().current(context).currentLayoutcolor),
+          const Icon(
+            Icons.desktop_windows,
+          ),
           const Icon(Icons.tablet),
           const Icon(Icons.phone_android),
           const Icon(Icons.watch)
@@ -22,12 +26,18 @@ class _Desktop extends BaseView<AdminController> {
       backgroundColor: context.theme.backgroundColor,
       body: Row(
         children: [
-          SizedBox(width: 30.w, child: const ColoredBox(color: Colors.black)),
-          Center(
-              child: Text(
-            "Desktop Layout",
-            style: context.theme.textTheme.headline1,
-          )),
+          DrawerLayout(
+            children: [],
+            size: Size.fromWidth(Device.width),
+          ),
+          BouncingScrollWrapper.builder(
+            context,
+            Center(
+                child: Text(
+              "Desktop Layout",
+              style: context.theme.textTheme.headline1,
+            )),
+          ),
         ],
       ),
     );
