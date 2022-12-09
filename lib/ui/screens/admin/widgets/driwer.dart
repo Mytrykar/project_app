@@ -5,7 +5,7 @@ import 'package:project_app/app/extensions/context.dart';
 import 'package:project_app/app/services/theme_servise.dart';
 import 'package:project_app/app/utils/locator.dart';
 import 'package:project_app/ui/screens/admin/performance/controller.dart';
-import 'package:project_app/ui/widgets/dumb/drawer_layout.dart';
+import 'package:project_app/ui/widgets/dumb/drawer_widget.dart';
 
 abstract class AdminDraver extends BaseWidget<AdminController, BaseController> {
   const AdminDraver({super.key});
@@ -49,7 +49,7 @@ class AdminDraverDesktop extends AdminDraver {
 
   @override
   Widget build(BuildContext context) {
-    return DrawerLayout(size: size, children: [
+    return DrawerWidget(size: size, children: [
       rowComponents(context, context.tr!.constructor, Icons.construction),
     ]);
   }
