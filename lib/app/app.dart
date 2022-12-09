@@ -3,8 +3,8 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:go_router/go_router.dart';
 import 'package:project_app/app/services/theme_servise.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
-import 'package:responsive_framework/utils/scroll_behavior.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'router/router.dart';
 import 'utils/constants.dart';
@@ -24,6 +24,8 @@ class ProjectApp extends StatelessWidget {
             darkTheme: locator.get<ThemeServise>().darkTheme,
             themeMode: ThemeMode.system,
             debugShowCheckedModeBanner: false,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
             builder: (context, child) => ResponsiveWrapper.builder(child,
                 maxWidth: 1200,
                 minWidth: 450,

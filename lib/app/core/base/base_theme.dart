@@ -10,9 +10,13 @@ abstract class BaseTheme {
   final TextStyle headline1;
   final Color currentLayoutcolor;
   final DrawerThemeData drawerThemeData;
+  final Color iconDrawerComponentColor;
+  final TextStyle drawerComponentTextStyle;
 
   const BaseTheme(
-      {required this.drawerThemeData,
+      {required this.iconDrawerComponentColor,
+      required this.drawerComponentTextStyle,
+      required this.drawerThemeData,
       required this.currentLayoutcolor,
       required this.headline1,
       required this.backgroundColor,
