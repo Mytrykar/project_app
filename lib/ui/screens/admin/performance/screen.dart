@@ -5,6 +5,7 @@ import 'package:project_app/app/core/base/base_screen.dart';
 import 'package:project_app/app/core/base/base_view.dart';
 import 'package:project_app/app/services/theme_servise.dart';
 import 'package:project_app/app/utils/locator.dart';
+import 'package:project_app/ui/screens/admin/widgets/driwer.dart';
 import 'package:project_app/ui/widgets/dumb/drawer_widget.dart';
 import 'package:responsive_framework/utils/scroll_behavior.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';

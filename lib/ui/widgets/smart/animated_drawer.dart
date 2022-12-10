@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:project_app/ui/widgets/dumb/drawer_collapse.dart';
+import 'package:project_app/ui/widgets/dumb/drawer_widget.dart';
 
 class AnimatedDrawerWidget extends StatefulWidget {
   final List<Widget> children;
+  final Size size;
   const AnimatedDrawerWidget(
-      {Key? key, required this.closeFunction, required this.children})
+      {Key? key,
+      required this.closeFunction,
+      required this.children,
+      required this.size})
       : super(key: key);
   final Function closeFunction;
 
@@ -115,128 +120,14 @@ class _DrawerWidgetState extends State<AnimatedDrawerWidget>
                   ),
                 ),
                 child: (_animation.value > 0.7)
-                    ? Column(
+                    ? DrawerWidget(
+                        size: context.size!,
                         children: [
                           const SizedBox(
                             height: 30,
                           ),
-                          DrawerUser(
-                            afterCollapse: 'AW',
-                            beforeCollapse: 'Aashar Wahla',
-                            isCollapsed: isCollapsed,
-                          ),
-
-                          DrawerItem(
-                            icon: const Icon(
-                              Icons.bookmarks,
-                              color: Colors.white,
-                              size: 35,
-                            ),
-                            label: const Text(
-                              'Item 1',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 22,
-                              ),
-                            ),
-                            isCollapsed: isCollapsedAfterSec,
-                          ),
-                          DrawerItem(
-                            icon: const Icon(
-                              Icons.bookmarks,
-                              color: Colors.white,
-                              size: 35,
-                            ),
-                            label: const Text(
-                              'Item 2',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 22,
-                              ),
-                            ),
-                            isCollapsed: isCollapsedAfterSec,
-                          ),
-                          DrawerItem(
-                            icon: const Icon(
-                              Icons.bookmarks,
-                              color: Colors.white,
-                              size: 35,
-                            ),
-                            label: const Text(
-                              'Item 3',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 22,
-                              ),
-                            ),
-                            isCollapsed: isCollapsedAfterSec,
-                          ),
-                          DrawerItem(
-                            icon: const Icon(
-                              Icons.bookmarks,
-                              color: Colors.white,
-                              size: 35,
-                            ),
-                            label: const Text(
-                              'Item 4',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 22,
-                              ),
-                            ),
-                            isCollapsed: isCollapsedAfterSec,
-                          ),
-                          DrawerItem(
-                            icon: const Icon(
-                              Icons.bookmarks,
-                              color: Colors.white,
-                              size: 35,
-                            ),
-                            label: const Text(
-                              'Item 5',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 22,
-                              ),
-                            ),
-                            isCollapsed: isCollapsedAfterSec,
-                          ),
-                          DrawerItem(
-                            icon: const Icon(
-                              Icons.bookmarks,
-                              color: Colors.white,
-                              size: 35,
-                            ),
-                            label: const Text(
-                              'Item 6',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 22,
-                              ),
-                            ),
-                            isCollapsed: isCollapsedAfterSec,
-                          ),
-                          DrawerItem(
-                            icon: const Icon(
-                              Icons.bookmarks,
-                              color: Colors.white,
-                              size: 35,
-                            ),
-                            label: const Text(
-                              'Item 7',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 22,
-                              ),
-                            ),
-                            isCollapsed: isCollapsedAfterSec,
+                          ListView(
+                            children: widget.children,
                           ),
                           const Spacer(),
                           // * Bottom Toggle Button
@@ -251,9 +142,6 @@ class _DrawerWidgetState extends State<AnimatedDrawerWidget>
               );
             },
           ),
-
-          // * The left area on the side which will used
-          // * to close the drawer when tapped
         ],
       ),
     );

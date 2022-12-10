@@ -21,11 +21,21 @@ class _Tablet extends BaseView<AdminController> {
             backgroundColor: orientation == Orientation.portrait
                 ? context.theme.backgroundColor
                 : Colors.blue,
-            body: Center(
-                child: Text(
-              "Tablet Layout",
-              style: context.theme.textTheme.headline1,
-            )),
+            body: Row(
+              children: [
+                AdminDrawerTablet(
+                  size: Size.fromWidth(Adaptive.w(30)),
+                ),
+                BouncingScrollWrapper.builder(
+                  context,
+                  Center(
+                      child: Text(
+                    "Tablet Layout",
+                    style: context.theme.textTheme.headline1,
+                  )),
+                ),
+              ],
+            ),
           );
         },
       );

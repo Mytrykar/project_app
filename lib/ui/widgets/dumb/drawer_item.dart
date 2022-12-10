@@ -22,7 +22,7 @@ class DrawerItem extends StatelessWidget {
             ? MainAxisAlignment.center
             : MainAxisAlignment.spaceEvenly,
         children: [
-          icon,
+          icon!,
           (isCollapsed)
               ? Container()
               : AnimatedOpacity(
