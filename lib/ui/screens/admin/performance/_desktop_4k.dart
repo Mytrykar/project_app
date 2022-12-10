@@ -26,9 +26,9 @@ class _Desktop_4K extends BaseView<AdminController> {
       backgroundColor: context.theme.backgroundColor,
       body: Row(
         children: [
-          AdminDraverDesktop(
-            size: Size.fromWidth(Adaptive.w(30)),
-          ),
+          // AdminDrawerWidget(
+          //   size: Size.fromWidth(Adaptive.w(30)),
+          // ),
           BouncingScrollWrapper.builder(
             context,
             Center(

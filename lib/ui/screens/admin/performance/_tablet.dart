@@ -23,8 +23,8 @@ class _Tablet extends BaseView<AdminController> {
                 : Colors.blue,
             body: Row(
               children: [
-                AdminDrawerTablet(
-                  size: Size.fromWidth(Adaptive.w(30)),
+                AnimatedAdminDrawerWidget(
+                  width: Adaptive.w(30),
                 ),
                 BouncingScrollWrapper.builder(
                   context,

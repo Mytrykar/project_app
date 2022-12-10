@@ -14,7 +14,7 @@ class LightTheme extends BaseTheme {
             ),
             currentLayoutcolor: Colors.blue,
             drawerThemeData:
-                const DrawerThemeData(backgroundColor: Colors.black38),
+                const DrawerThemeData(backgroundColor: Colors.white),
             iconDrawerComponentColor: Colors.black,
             drawerComponentTextStyle: const TextStyle());
 }

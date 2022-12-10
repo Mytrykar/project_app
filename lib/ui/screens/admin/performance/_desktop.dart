@@ -22,9 +22,9 @@ class _Desktop extends BaseView<AdminController> {
       backgroundColor: context.theme.backgroundColor,
       body: Row(
         children: [
-          AdminDraverDesktop(
-            size: Size.fromWidth(Adaptive.w(30)),
-          ),
+          // AdminDrawerWidget(
+          //   w: Size.fromWidth(Adaptive.w(30)),
+          // ),
           Center(
               child: Text(
             "Desktop Layout",
