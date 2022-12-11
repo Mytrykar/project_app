@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:project_app/ui/widgets/dumb/drawer_collapse.dart';
-import 'package:project_app/ui/widgets/dumb/drawer_item.dart';
-import 'package:project_app/ui/widgets/dumb/drawer_widget.dart';
+import 'package:project_app/ui/widgets/utils/drawer_item.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AnimatedDrawerWidget extends StatefulWidget {
+  final List<DrawerItem> items;
   final double width;
-  final List<DrawerItem> children;
-  final Widget header;
-  final Widget headerCollapsed;
-  final Widget footer;
+  final Color? backgroundColor;
   const AnimatedDrawerWidget({
     super.key,
-    required this.children,
-    required this.header,
-    required this.footer,
+    required this.items,
     required this.width,
-    required this.headerCollapsed,
+    this.backgroundColor,
   });
 
   @override
@@ -104,57 +98,78 @@ class _AnimatedDrawerWidgetState extends State<AnimatedDrawerWidget>
       builder: (_, child) {
         return AnimatedContainer(
           duration: const Duration(
-            milliseconds: 70,
-          ),
+              // milliseconds: 70,
+              seconds: 5),
           width: (isCollapsed)
-              ? width * .2 * _animation.value
-              : width * .5 * _animation.value,
-          margin: EdgeInsets.only(
-            left: width * .06 * _animation.value,
-            top: height * .05,
-            bottom: height * .05,
-          ),
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.circular(
-              20,
-            ),
-          ),
+              ? width / 5 * _animation.value
+              : width * _animation.value,
+          color: const Color.fromARGB(255, 12, 19, 51),
           child: (_animation.value > 0.7)
-              ? DrawerWidget(
-                  width: widget.width,
-                  header: widget.header,
-                  footer: Column(
-                    children: [
-                      widget.footer,
+              ? Column(
+                  children: [
+                    if (isCollapsed)
+                      if (_controller.value >= 1) _collapsedButton,
+                    if (!isCollapsed)
                       Row(
                         children: [
                           const Spacer(),
                           // * Bottom Toggle Button
-                          if (_controller.value >= 1)
-                            DrawerCollapse(
-                              isCollapsed: isCollapsed,
-                              onTap: onCollapseTap,
-                            ),
+                          if (_controller.value >= 1) _collapsedButton
                         ],
                       ),
-                    ],
-                  ),
-                  children: List.generate(
-                      widget.children.length,
-                      (index) => DrawerItem(
-                            icon: widget.children[index].icon,
-                            label: widget.children[index].label,
-                            isCollapsed: isCollapsed,
-                            onTap: widget.children[index].onTap,
-                          )),
+                    Expanded(
+                      child: ListView(
+                        padding: const EdgeInsets.only(top: 20, bottom: 20),
+                        children: List.generate(
+                          widget.items.length,
+                          (index) => InkWell(
+                            onTap: widget.items[index].onTap,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 15),
+                              child: !isCollapsed
+                                  ? Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(widget.items[index].icon,
+                                            color: Colors.white),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 20),
+                                          child: Text(
+                                            widget.items[index].item,
+                                            style: const TextStyle(
+                                                // fontSize: 30,
+                                                color: Colors.white),
+                                          ),
+                                        )
+                                      ],
+                                    )
+                                  : Icon(widget.items[index].icon,
+                                      color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 )
               : const SizedBox(),
         );
       },
     );
   }
+
+  Widget get _divider {
+    if (isCollapsed) return const SizedBox();
+    return const Divider();
+  }
+
+  Widget get _collapsedButton => IconButton(
+        icon: (isCollapsed)
+            ? const Icon(Icons.arrow_forward_ios)
+            : const Icon(Icons.arrow_back_ios),
+        color: Colors.white,
+        onPressed: () => onCollapseTap(),
+      );
 }
-// width: width,
-//       backgroundColor: context.theme.drawerTheme.backgroundColor,
-//       shape: const Border(right: BorderSide()),

@@ -6,8 +6,13 @@ class _Mobile extends BaseView<AdminController> {
   Widget build(BuildContext _) => ResponsiveSizer(
         builder: (context, orientation, _) {
           return Scaffold(
-            drawer: AdminDrawerWidget(
-              width: Adaptive.w(95),
+            drawer: Drawer(
+              width: 90.w,
+              // backgroundColor: context.theme.drawerTheme.backgroundColor,
+              // shape: const Border(right: BorderSide()),
+              child: AdminDrawerWidget(
+                width: Adaptive.w(95),
+              ),
             ),
             appBar: AppBar(
               actionsIconTheme: context.theme.appBarTheme.actionsIconTheme,
