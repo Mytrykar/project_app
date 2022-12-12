@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:project_app/app/core/base/base_controller.dart';
 import 'package:project_app/app/core/base/base_widget.dart';
 import 'package:project_app/app/extensions/context.dart';
@@ -14,6 +15,17 @@ abstract class AdminDrawer extends BaseWidget<AdminController, BaseController> {
   @override
   // ignore: overridden_fields
   final String? superTag = "Admin";
+
+  List<DrawerItem> items(BuildContext context, String currentPage) {
+    return [
+      DrawerItem("Home",
+          icon: Icons.home, onTap: () {}, item: context.tr!.constructor)
+        ..checkSelected(currentPage),
+      DrawerItem("Constructor",
+          icon: Icons.construction, onTap: () {}, item: context.tr!.constructor)
+        ..checkSelected(currentPage),
+    ];
+  }
 }
 
 class AdminDrawerWidget extends AdminDrawer {
@@ -24,22 +36,13 @@ class AdminDrawerWidget extends AdminDrawer {
 
   @override
   Widget build(BuildContext context) {
-    return DrawerWidget(
-      width: width,
-      userInfo: DrawerUser(name: "Mitrykar", email: "sadasfasf@sdgsdg.sdfg"),
-      footer: const SizedBox(),
-      items: [
-        DrawerItem(
-            icon: Icons.construction,
-            onTap: () {},
-            isSelected: true,
-            item: context.tr!.constructor),
-        DrawerItem(
-            icon: Icons.construction,
-            onTap: () {},
-            isSelected: true,
-            item: context.tr!.constructor),
-      ],
+    return Obx(
+      () => DrawerWidget(
+        width: width,
+        userInfo: DrawerUser(name: "Mitrykar", email: "sadasfasf@sdgsdg.sdfg"),
+        footer: const SizedBox(),
+        items: items(context, superController.currentPage.value),
+      ),
     );
   }
 }
@@ -48,20 +51,11 @@ class AnimatedAdminDrawerWidget extends AdminDrawer {
   const AnimatedAdminDrawerWidget({required super.width, super.key});
   @override
   Widget build(BuildContext context) {
-    return AnimatedDrawerWidget(
-      width: width,
-      items: [
-        DrawerItem(
-            icon: Icons.construction,
-            onTap: () {},
-            isSelected: true,
-            item: context.tr!.constructor),
-        DrawerItem(
-            icon: Icons.construction,
-            onTap: () {},
-            isSelected: true,
-            item: context.tr!.constructor),
-      ],
+    return Obx(
+      () => AnimatedDrawerWidget(
+        width: width,
+        items: items(context, superController.currentPage.value),
+      ),
     );
   }
 }

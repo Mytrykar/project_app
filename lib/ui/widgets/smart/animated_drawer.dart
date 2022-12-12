@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/context_extensions.dart';
 import 'package:project_app/ui/widgets/utils/drawer_item.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AnimatedDrawerWidget extends StatefulWidget {
   final List<DrawerItem> items;
-  final double width;
+  final double? width;
+  final double? collapsedWidth;
   final Color? backgroundColor;
+  final Color? selectItemBackgroundColor;
+  final Color? itemColor;
+  final Color? selectItemColor;
+
   const AnimatedDrawerWidget({
     super.key,
     required this.items,
-    required this.width,
+    this.width,
     this.backgroundColor,
+    this.collapsedWidth,
+    this.selectItemBackgroundColor,
+    this.itemColor,
+    this.selectItemColor,
   });
 
   @override
@@ -23,6 +33,7 @@ class _AnimatedDrawerWidgetState extends State<AnimatedDrawerWidget>
   late Animation<double> _animation;
   late double height;
   late double width;
+  late double collapsedWidth;
   double backgroundOpacity = 0;
   bool isCollapsed = true;
   bool isCollapsedAfterSec = true;
@@ -81,7 +92,8 @@ class _AnimatedDrawerWidgetState extends State<AnimatedDrawerWidget>
   void initState() {
     super.initState();
     initializeAnimation();
-    width = widget.width;
+    width = widget.width ?? 30.w;
+    collapsedWidth = widget.collapsedWidth ?? 50;
     height = Device.height;
   }
 
@@ -98,12 +110,14 @@ class _AnimatedDrawerWidgetState extends State<AnimatedDrawerWidget>
       builder: (_, child) {
         return AnimatedContainer(
           duration: const Duration(
-              // milliseconds: 70,
-              seconds: 5),
+            milliseconds: 70,
+            // seconds: 5
+          ),
           width: (isCollapsed)
-              ? width / 5 * _animation.value
+              ? collapsedWidth * _animation.value
               : width * _animation.value,
-          color: const Color.fromARGB(255, 12, 19, 51),
+          color:
+              widget.backgroundColor ?? const Color.fromARGB(255, 12, 19, 51),
           child: (_animation.value > 0.7)
               ? Column(
                   children: [
@@ -125,28 +139,51 @@ class _AnimatedDrawerWidgetState extends State<AnimatedDrawerWidget>
                           (index) => InkWell(
                             onTap: widget.items[index].onTap,
                             child: Padding(
-                              padding: const EdgeInsets.only(top: 15),
-                              child: !isCollapsed
-                                  ? Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Icon(widget.items[index].icon,
-                                            color: Colors.white),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 20),
-                                          child: Text(
-                                            widget.items[index].item,
-                                            style: const TextStyle(
-                                                // fontSize: 30,
-                                                color: Colors.white),
-                                          ),
-                                        )
-                                      ],
-                                    )
-                                  : Icon(widget.items[index].icon,
-                                      color: Colors.white),
+                              padding: const EdgeInsets.only(
+                                left: 5,
+                              ),
+                              child: Column(
+                                children: [
+                                  ClipPath(
+                                    clipper: OpenClipper(),
+                                    child: Container(
+                                      color: widget.items[index].isSelected!
+                                          ? widget.selectItemBackgroundColor ??
+                                              context.theme.backgroundColor
+                                          : null,
+                                      height: collapsedWidth,
+                                      width:
+                                          isCollapsed ? collapsedWidth : width,
+                                      child: !isCollapsedAfterSec
+                                          ? Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Icon(widget.items[index].icon,
+                                                    color: _itemColor(widget
+                                                        .items[index]
+                                                        .isSelected!)),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 20),
+                                                  child: Text(
+                                                    widget.items[index].item,
+                                                    style: TextStyle(
+                                                        color: _itemColor(widget
+                                                            .items[index]
+                                                            .isSelected!)),
+                                                  ),
+                                                )
+                                              ],
+                                            )
+                                          : Icon(widget.items[index].icon,
+                                              color: _itemColor(widget
+                                                  .items[index].isSelected!)),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -160,10 +197,9 @@ class _AnimatedDrawerWidgetState extends State<AnimatedDrawerWidget>
     );
   }
 
-  Widget get _divider {
-    if (isCollapsed) return const SizedBox();
-    return const Divider();
-  }
+  Color _itemColor(bool isSelected) => isSelected
+      ? widget.selectItemColor ?? Colors.blue
+      : widget.itemColor ?? Colors.white;
 
   Widget get _collapsedButton => IconButton(
         icon: (isCollapsed)
@@ -172,4 +208,39 @@ class _AnimatedDrawerWidgetState extends State<AnimatedDrawerWidget>
         color: Colors.white,
         onPressed: () => onCollapseTap(),
       );
+}
+
+class OpenClipper extends CustomClipper<Path> {
+  final double? wingsWidth;
+  final double? wingsHeight;
+
+  OpenClipper({this.wingsHeight = 10, this.wingsWidth = 10});
+  @override
+  Path getClip(Size size) {
+    Path path = Path()
+      ..moveTo(size.width, 0)
+      ..lineTo(size.width, size.height)
+      ..arcToPoint(Offset(size.width - wingsWidth!, size.height - wingsHeight!),
+          radius: Radius.circular(wingsWidth!), clockwise: false)
+      // ..lineTo(size.width - wingsWidth!, size.height - wingsHeight!)
+      ..lineTo(wingsWidth!, size.height - wingsHeight!)
+      ..arcToPoint(Offset(0, size.height / 2),
+          radius: Radius.circular(wingsHeight!), clockwise: true)
+      // ..lineTo(0, size.height / 2)
+      ..arcToPoint(Offset(wingsWidth!, wingsHeight!),
+          radius: Radius.circular(wingsHeight!), clockwise: true)
+      // ..lineTo(wingsWidth!, wingsHeight!)
+      ..lineTo(size.width - wingsWidth!, wingsHeight!)
+      ..arcToPoint(Offset(size.width, 0),
+          radius: Radius.circular(wingsWidth!), clockwise: false)
+      // ..lineTo(size.width, 0)
+      ..close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return false;
+  }
 }

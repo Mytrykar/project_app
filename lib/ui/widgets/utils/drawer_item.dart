@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 
 class DrawerItem {
+  final String id;
   final String item;
   final IconData icon;
   final void Function()? onTap;
-  final bool isSelected;
+  late bool? isSelected;
 
-  DrawerItem(
+  DrawerItem(this.id,
       {required this.item,
       required this.icon,
       this.onTap,
-      required this.isSelected});
+      this.isSelected = false});
+
+  void checkSelected(String id) {
+    if (id != this.id) return;
+    isSelected = true;
+  }
 }
