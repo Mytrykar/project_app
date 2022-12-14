@@ -27,8 +27,8 @@ class ProjectApp extends StatelessWidget {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             builder: (context, child) => ResponsiveWrapper.builder(child,
-                maxWidth: 1200,
-                minWidth: 450,
+                maxWidth: 2460,
+                minWidth: 100,
                 defaultScale: true,
                 breakpoints: [
                   const ResponsiveBreakpoint.resize(450, name: MOBILE),

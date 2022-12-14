@@ -7,24 +7,29 @@ class _Desktop extends BaseView<AdminController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: const Text("M Y T R Y K A R"),
-        actionsIconTheme: context.theme.appBarTheme.actionsIconTheme,
-        actions: [
-          Icon(Icons.desktop_windows,
-              color:
-                  locator<ThemeServise>().current(context).currentLayoutcolor),
-          const Icon(Icons.tablet),
-          const Icon(Icons.phone_android),
-          const Icon(Icons.watch)
-        ],
+        backgroundColor: Colors.white,
+        elevation: 15,
+        title: ScreenTypeWidget(
+          icons: const [
+            Icons.four_k,
+            Icons.desktop_windows,
+            Icons.tablet,
+            Icons.phone_android
+          ],
+          color: locator<ThemeServise>().current(context).currentLayoutcolor,
+          index: 1,
+        ),
+        actions: const [UserInAppBar()],
       ),
       backgroundColor: context.theme.backgroundColor,
-      body: Row(
+      body: Stack(
         children: [
-          // AdminDrawerWidget(
-          //   w: Size.fromWidth(Adaptive.w(30)),
-          // ),
+          const Align(
+            alignment: Alignment.centerLeft,
+            child: AdminDrawerWidgetDesktop(
+              width: 250,
+            ),
+          ),
           Center(
               child: Text(
             "Desktop Layout",

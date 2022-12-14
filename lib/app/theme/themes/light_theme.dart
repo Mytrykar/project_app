@@ -13,8 +13,8 @@ class LightTheme extends BaseTheme {
               fontSize: 25,
             ),
             currentLayoutcolor: Colors.blue,
-            drawerThemeData:
-                const DrawerThemeData(backgroundColor: Colors.white),
-            iconDrawerComponentColor: Colors.black,
-            drawerComponentTextStyle: const TextStyle());
+            adminDrawerTheme: const AdminDrawerTheme(
+                backgroundColor: Colors.white,
+                itemColor: Colors.black,
+                selectItemColor: Colors.blue));
 }

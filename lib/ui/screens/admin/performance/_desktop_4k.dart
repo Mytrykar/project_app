@@ -8,20 +8,17 @@ class _Desktop_4K extends BaseView<AdminController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: const Text("M Y T R Y K A R"),
-        actionsIconTheme: context.theme.appBarTheme.actionsIconTheme,
-        actions: [
-          Icon(Icons.four_k,
-              color:
-                  locator<ThemeServise>().current(context).currentLayoutcolor),
-          const Icon(
+        title: ScreenTypeWidget(
+          icons: const [
+            Icons.four_k,
             Icons.desktop_windows,
-          ),
-          const Icon(Icons.tablet),
-          const Icon(Icons.phone_android),
-          const Icon(Icons.watch)
-        ],
+            Icons.tablet,
+            Icons.phone_android
+          ],
+          color: locator<ThemeServise>().current(context).currentLayoutcolor,
+          index: 0,
+        ),
+        actions: const [UserInAppBar()],
       ),
       backgroundColor: context.theme.backgroundColor,
       body: Row(

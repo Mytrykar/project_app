@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
+import 'package:project_app/app/core/base/base_theme.dart';
+import 'package:project_app/ui/widgets/dumb/drawer_items.dart';
 import 'package:project_app/ui/widgets/utils/drawer_item.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AnimatedDrawerWidget extends StatefulWidget {
   final List<DrawerItem> items;
-  final double? width;
-  final double? collapsedWidth;
-  final Color? backgroundColor;
-  final Color? selectItemBackgroundColor;
-  final Color? itemColor;
-  final Color? selectItemColor;
+  final double width;
+  final double collapsedWidth;
+  final double height;
+  final AdminDrawerTheme? adminDrawerTheme;
 
   const AnimatedDrawerWidget({
     super.key,
     required this.items,
-    this.width,
-    this.backgroundColor,
-    this.collapsedWidth,
-    this.selectItemBackgroundColor,
-    this.itemColor,
-    this.selectItemColor,
+    required this.width,
+    required this.collapsedWidth,
+    this.adminDrawerTheme,
+    required this.height,
   });
 
   @override
@@ -92,9 +89,9 @@ class _AnimatedDrawerWidgetState extends State<AnimatedDrawerWidget>
   void initState() {
     super.initState();
     initializeAnimation();
-    width = widget.width ?? 30.w;
-    collapsedWidth = widget.collapsedWidth ?? 50;
-    height = Device.height;
+    width = widget.width;
+    collapsedWidth = widget.collapsedWidth;
+    height = widget.height;
   }
 
   @override
@@ -116,8 +113,8 @@ class _AnimatedDrawerWidgetState extends State<AnimatedDrawerWidget>
           width: (isCollapsed)
               ? collapsedWidth * _animation.value
               : width * _animation.value,
-          color:
-              widget.backgroundColor ?? const Color.fromARGB(255, 12, 19, 51),
+          color: widget.adminDrawerTheme?.backgroundColor ??
+              const Color.fromARGB(255, 12, 19, 51),
           child: (_animation.value > 0.7)
               ? Column(
                   children: [
@@ -131,64 +128,15 @@ class _AnimatedDrawerWidgetState extends State<AnimatedDrawerWidget>
                           if (_controller.value >= 1) _collapsedButton
                         ],
                       ),
-                    Expanded(
-                      child: ListView(
-                        padding: const EdgeInsets.only(top: 20, bottom: 20),
-                        children: List.generate(
-                          widget.items.length,
-                          (index) => InkWell(
-                            onTap: widget.items[index].onTap,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                left: 5,
-                              ),
-                              child: Column(
-                                children: [
-                                  ClipPath(
-                                    clipper: OpenClipper(),
-                                    child: Container(
-                                      color: widget.items[index].isSelected!
-                                          ? widget.selectItemBackgroundColor ??
-                                              context.theme.backgroundColor
-                                          : null,
-                                      height: collapsedWidth,
-                                      width:
-                                          isCollapsed ? collapsedWidth : width,
-                                      child: !isCollapsedAfterSec
-                                          ? Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Icon(widget.items[index].icon,
-                                                    color: _itemColor(widget
-                                                        .items[index]
-                                                        .isSelected!)),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 20),
-                                                  child: Text(
-                                                    widget.items[index].item,
-                                                    style: TextStyle(
-                                                        color: _itemColor(widget
-                                                            .items[index]
-                                                            .isSelected!)),
-                                                  ),
-                                                )
-                                              ],
-                                            )
-                                          : Icon(widget.items[index].icon,
-                                              color: _itemColor(widget
-                                                  .items[index].isSelected!)),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    DrawerItemsWidget(
+                      selectItemBackgroundColor: context.theme.backgroundColor,
+                      isCollapsed: isCollapsedAfterSec,
+                      itemHeight: collapsedWidth,
+                      items: widget.items,
+                      width: width,
+                      itemColor: widget.adminDrawerTheme?.itemColor,
+                      selectItemColor: widget.adminDrawerTheme?.selectItemColor,
+                    )
                   ],
                 )
               : const SizedBox(),
@@ -196,10 +144,6 @@ class _AnimatedDrawerWidgetState extends State<AnimatedDrawerWidget>
       },
     );
   }
-
-  Color _itemColor(bool isSelected) => isSelected
-      ? widget.selectItemColor ?? Colors.blue
-      : widget.itemColor ?? Colors.white;
 
   Widget get _collapsedButton => IconButton(
         icon: (isCollapsed)

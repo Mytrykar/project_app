@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/context_extensions.dart';
+import 'package:project_app/app/core/base/base_theme.dart';
+import 'package:project_app/ui/widgets/dumb/drawer_user_widget.dart';
 import 'package:project_app/ui/widgets/utils/drawer_item.dart';
 import 'package:project_app/ui/widgets/utils/drawer_user.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import 'drawer_items.dart';
+
 class DrawerWidget extends StatelessWidget {
-  final DrawerUser userInfo;
+  final DrawerUser? userInfo;
   final Widget? footer;
   final List<DrawerItem> items;
   final double width;
-  final Color? backgroundColor;
+  final AdminDrawerTheme? adminDrawerTheme;
   const DrawerWidget({
     super.key,
     required this.items,
     required this.width,
-    required this.userInfo,
+    this.userInfo,
     required this.footer,
-    this.backgroundColor,
+    this.adminDrawerTheme,
   });
 
   @override
@@ -24,88 +29,43 @@ class DrawerWidget extends StatelessWidget {
       height: Device.height,
       width: width,
       decoration: BoxDecoration(
-        color: backgroundColor,
-        // boxShadow: [
-        //   BoxShadow(
-        //       spreadRadius: 0.7,
-        //       blurStyle: BlurStyle.inner,
-        //       offset: Offset.fromDirection(1)),
-        //   BoxShadow(
-        //       color: Colors.white,
-        //       spreadRadius: 0.5,
-        //       blurStyle: BlurStyle.inner,
-        //       offset: Offset.fromDirection(1)),
-        // ],
+        color: adminDrawerTheme?.backgroundColor ??
+            const Color.fromARGB(255, 12, 19, 51),
       ),
       child: Column(
         children: [
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                    left: 30, right: 20, top: 10, bottom: 10),
-                child: SizedBox(
-                  width: width / 5,
-                  height: width / 5,
-                  child: CircleAvatar(
-                    foregroundImage: userInfo.image,
-                    // foregroundColor: Colors.white,
-                  ),
-                ),
+          if (userInfo != null)
+            DrawerUserWidget(
+              avatar: CircleAvatar(
+                foregroundImage: userInfo!.image,
               ),
-              Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        userInfo.name,
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                    ),
-                    if (userInfo.email != null)
-                      Text("Email: ${userInfo.email!}"),
-                  ],
-                ),
-              )
-            ],
+              userName: Text(
+                userInfo!.name,
+                style: TextStyle(
+                    fontSize: 20,
+                    color: adminDrawerTheme?.itemColor ?? Colors.white),
+              ),
+              email: Text(
+                "Email: ${userInfo!.email!}",
+                style: TextStyle(
+                    fontSize: 20,
+                    color: adminDrawerTheme?.itemColor ?? Colors.white),
+              ),
+            ),
+          if (userInfo != null)
+            const Divider(
+              height: 0.5,
+              color: Colors.black,
+            ),
+          DrawerItemsWidget(
+            isCollapsed: false,
+            itemHeight: 50,
+            items: items,
+            selectItemBackgroundColor: context.theme.backgroundColor,
+            width: width,
+            itemColor: adminDrawerTheme?.itemColor,
+            selectItemColor: adminDrawerTheme?.selectItemColor,
           ),
-          const Divider(
-            height: 0.5,
-            color: Colors.black,
-          ),
-          Expanded(
-              child: ListView(
-                  padding: const EdgeInsets.all(5),
-                  children: List.generate(
-                    items.length,
-                    (index) => InkWell(
-                      onTap: items[index].onTap,
-                      child: Padding(
-                        padding:
-                            const EdgeInsets.only(top: 15, left: 30, right: 30),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 10),
-                              child: Icon(items[index].icon, size: 7.w),
-                            ),
-                            AnimatedOpacity(
-                              duration: const Duration(
-                                seconds: 1,
-                              ),
-                              opacity: 1,
-                              child: Text(items[index].item,
-                                  style: TextStyle(fontSize: 7.w)),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ))),
           const Divider(),
           footer ?? const SizedBox(),
         ],
@@ -113,6 +73,3 @@ class DrawerWidget extends StatelessWidget {
     );
   }
 }
-// width: width,
-//       backgroundColor: context.theme.drawerTheme.backgroundColor,
-//       shape: const Border(right: BorderSide()),

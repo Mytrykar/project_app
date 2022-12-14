@@ -9,14 +9,10 @@ abstract class BaseTheme {
   final Color backgroundColor;
   final TextStyle headline1;
   final Color currentLayoutcolor;
-  final DrawerThemeData drawerThemeData;
-  final Color iconDrawerComponentColor;
-  final TextStyle drawerComponentTextStyle;
+  final AdminDrawerTheme adminDrawerTheme;
 
   const BaseTheme(
-      {required this.iconDrawerComponentColor,
-      required this.drawerComponentTextStyle,
-      required this.drawerThemeData,
+      {required this.adminDrawerTheme,
       required this.currentLayoutcolor,
       required this.headline1,
       required this.backgroundColor,
@@ -30,8 +26,17 @@ abstract class BaseTheme {
         colorScheme: colorScheme,
         brightness: brightness,
         appBarTheme: AppBarTheme(actionsIconTheme: iconThemeData),
-        drawerTheme: drawerThemeData,
         backgroundColor: backgroundColor,
         textTheme: TextTheme(headline1: headline1));
   }
+}
+
+class AdminDrawerTheme {
+  final Color backgroundColor;
+  final Color itemColor;
+  final Color selectItemColor;
+  const AdminDrawerTheme(
+      {required this.selectItemColor,
+      required this.backgroundColor,
+      required this.itemColor});
 }

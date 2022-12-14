@@ -10,8 +10,8 @@ class DarkTheme extends BaseTheme {
             backgroundColor: Colors.black87,
             headline1: const TextStyle(color: Colors.white, fontSize: 25),
             currentLayoutcolor: Colors.blue,
-            drawerThemeData:
-                const DrawerThemeData(backgroundColor: Colors.blueGrey),
-            iconDrawerComponentColor: Colors.blue,
-            drawerComponentTextStyle: const TextStyle());
+            adminDrawerTheme: const AdminDrawerTheme(
+                backgroundColor: Colors.white,
+                itemColor: Colors.black,
+                selectItemColor: Colors.white));
 }

@@ -9,67 +9,25 @@ class _Tablet extends BaseView<AdminController> {
           elevation: 15,
           title: Align(
               alignment: Alignment.centerLeft,
-              child: Row(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(left: 5),
-                    child: Icon(
-                      Icons.four_k,
-                      color: Colors.black26,
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 5),
-                    child: Icon(
-                      Icons.desktop_windows,
-                      color: Colors.black26,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 5),
-                    child: Icon(Icons.tablet,
-                        color: locator<ThemeServise>()
-                            .current(context)
-                            .currentLayoutcolor),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 5),
-                    child: Icon(
-                      Icons.phone_android,
-                      color: Colors.black26,
-                    ),
-                  )
+              child: ScreenTypeWidget(
+                icons: const [
+                  Icons.four_k,
+                  Icons.desktop_windows,
+                  Icons.tablet,
+                  Icons.phone_android
                 ],
+                color:
+                    locator<ThemeServise>().current(context).currentLayoutcolor,
+                index: 2,
               )),
-          actions: [
-            Builder(builder: (context) {
-              final DrawerUser user = DrawerUser(name: "Дмитро Пушкарьов");
-              return Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: Row(
-                  children: [
-                    InkWell(
-                      child: Text(user.name,
-                          style: const TextStyle(color: Colors.black)),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: CircleAvatar(
-                        foregroundImage: user.image,
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            })
-          ],
+          actions: const [UserInAppBar()],
         ),
         backgroundColor: Colors.white,
         body: Stack(
           children: [
             const Align(
               alignment: Alignment.centerLeft,
-              child: AnimatedAdminDrawerWidget(
+              child: AdminDrawerWidgetTablet(
                 width: 250,
               ),
             ),

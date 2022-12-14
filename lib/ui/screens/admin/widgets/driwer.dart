@@ -3,11 +3,14 @@ import 'package:get/get.dart';
 import 'package:project_app/app/core/base/base_controller.dart';
 import 'package:project_app/app/core/base/base_widget.dart';
 import 'package:project_app/app/extensions/context.dart';
+import 'package:project_app/app/services/theme_servise.dart';
+import 'package:project_app/app/utils/locator.dart';
 import 'package:project_app/ui/screens/admin/performance/controller.dart';
 import 'package:project_app/ui/widgets/dumb/drawer_widget.dart';
 import 'package:project_app/ui/widgets/smart/animated_drawer.dart';
 import 'package:project_app/ui/widgets/utils/drawer_item.dart';
 import 'package:project_app/ui/widgets/utils/drawer_user.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 abstract class AdminDrawer extends BaseWidget<AdminController, BaseController> {
   final double width;
@@ -18,18 +21,20 @@ abstract class AdminDrawer extends BaseWidget<AdminController, BaseController> {
 
   List<DrawerItem> items(BuildContext context, String currentPage) {
     return [
-      DrawerItem("Home",
-          icon: Icons.home, onTap: () {}, item: context.tr!.constructor)
+      DrawerItem("Home", icon: Icons.home, onTap: () {
+        superController.goToPage("Home");
+      }, item: context.tr!.constructor)
         ..checkSelected(currentPage),
-      DrawerItem("Constructor",
-          icon: Icons.construction, onTap: () {}, item: context.tr!.constructor)
+      DrawerItem("Constructor", icon: Icons.construction, onTap: () {
+        superController.goToPage("Constructor");
+      }, item: context.tr!.constructor)
         ..checkSelected(currentPage),
     ];
   }
 }
 
-class AdminDrawerWidget extends AdminDrawer {
-  const AdminDrawerWidget({
+class AdminDrawerWidgetMobile extends AdminDrawer {
+  const AdminDrawerWidgetMobile({
     required super.width,
     super.key,
   });
@@ -38,6 +43,8 @@ class AdminDrawerWidget extends AdminDrawer {
   Widget build(BuildContext context) {
     return Obx(
       () => DrawerWidget(
+        adminDrawerTheme:
+            locator<ThemeServise>().current(context).adminDrawerTheme,
         width: width,
         userInfo: DrawerUser(name: "Mitrykar", email: "sadasfasf@sdgsdg.sdfg"),
         footer: const SizedBox(),
@@ -47,13 +54,34 @@ class AdminDrawerWidget extends AdminDrawer {
   }
 }
 
-class AnimatedAdminDrawerWidget extends AdminDrawer {
-  const AnimatedAdminDrawerWidget({required super.width, super.key});
+class AdminDrawerWidgetTablet extends AdminDrawer {
+  const AdminDrawerWidgetTablet({required super.width, super.key});
   @override
   Widget build(BuildContext context) {
     return Obx(
       () => AnimatedDrawerWidget(
+        adminDrawerTheme:
+            locator<ThemeServise>().current(context).adminDrawerTheme,
+        collapsedWidth: 50,
+        height: Device.height,
         width: width,
+        items: items(context, superController.currentPage.value),
+      ),
+    );
+  }
+}
+
+class AdminDrawerWidgetDesktop extends AdminDrawer {
+  const AdminDrawerWidgetDesktop({super.key, required super.width});
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+      () => DrawerWidget(
+        adminDrawerTheme:
+            locator<ThemeServise>().current(context).adminDrawerTheme,
+        width: width,
+        footer: const SizedBox(),
         items: items(context, superController.currentPage.value),
       ),
     );
