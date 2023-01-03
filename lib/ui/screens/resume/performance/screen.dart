@@ -19,13 +19,13 @@ part '_desktop.dart';
 part '_mobile.dart';
 part '_tablet.dart';
 
-class AdminScreen extends BaseScreen<AdminController> {
-  static const String tag = "Admin";
-  const AdminScreen({super.key});
+class ResumeScreen extends BaseScreen<ResumeController> {
+  static const String tag = "ResumeScreen";
+  const ResumeScreen({super.key});
 
   @override
   Widget superControllerBilding(Widget child) => GetBuilder(
-      init: AdminController(),
+      init: ResumeController(),
       autoRemove: false,
       tag: tag,
       // initState: (state) => state,
@@ -33,22 +33,22 @@ class AdminScreen extends BaseScreen<AdminController> {
 
   @override
   Widget? desctop_4K() => superControllerBilding(const _Desktop_4K(
-        key: Key("AdminScreen_Desktop_4K"),
+        key: Key("ResumeScreen_Desktop_4K"),
         tag: tag,
       ));
   @override
   Widget? desktop() => superControllerBilding(const _Desktop(
-        key: Key("AdminScreen_Desktop"),
+        key: Key("ResumeScreen_Desktop"),
         tag: tag,
       ));
   @override
   Widget? mobile() => superControllerBilding(const _Mobile(
-        key: Key("AdminScreen_Mobile"),
+        key: Key("ResumeScreen_Mobile"),
         tag: tag,
       ));
   @override
   Widget? tablet() => superControllerBilding(const _Tablet(
-        key: Key("AdminScreen_Tablet"),
+        key: Key("ResumeScreen_Tablet"),
         tag: tag,
       ));
 }

@@ -11,7 +11,7 @@ class DarkTheme extends BaseTheme {
             headline1: const TextStyle(color: Colors.white, fontSize: 25),
             currentLayoutcolor: Colors.blue,
             adminDrawerTheme: const AdminDrawerTheme(
-                backgroundColor: Colors.white,
+                backgroundColor: Color.fromARGB(255, 12, 19, 51),
                 itemColor: Colors.black,
-                selectItemColor: Colors.white));
+                selectItemColor: Colors.blue));
 }
