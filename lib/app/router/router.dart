@@ -24,7 +24,9 @@ class AppRouter {
   static final GoRouter _router = GoRouter(
     routes: $appRoutes,
     observers: _observers,
-    initialLocation: "/admin-panel",
+    initialLocation: "/resume",
+
+    // initialLocation: "/admin-panel",
     // redirect: (context, state) {
     //   // print(state.location);
     // },

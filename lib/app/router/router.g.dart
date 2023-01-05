@@ -9,6 +9,7 @@ part of app_router;
 List<GoRoute> get $appRoutes => [
       $adminRoute,
       $loginRoute,
+      $resumeRoute,
     ];
 
 GoRoute get $adminRoute => GoRouteData.$route(
@@ -38,6 +39,23 @@ extension $LoginRouteExtension on LoginRoute {
 
   String get location => GoRouteData.$location(
         '/login',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+GoRoute get $resumeRoute => GoRouteData.$route(
+      path: '/resume',
+      factory: $ResumeRouteExtension._fromState,
+    );
+
+extension $ResumeRouteExtension on ResumeRoute {
+  static ResumeRoute _fromState(GoRouterState state) => const ResumeRoute();
+
+  String get location => GoRouteData.$location(
+        '/resume',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
