@@ -6,7 +6,6 @@ import 'package:go_router/go_router.dart';
 import 'package:logger/logger.dart';
 import 'package:project_app/app/utils/logger.dart';
 import 'package:project_app/ui/screens/admin/performance/screen.dart';
-import 'package:project_app/ui/screens/resume/performance/screen.dart';
 import 'package:project_app/ui/widgets/dumb/error_widget.dart' as e;
 
 part 'observer.dart';
@@ -15,7 +14,6 @@ part 'router.g.dart';
 //Gen_routes_with_cli
 part 'routes/admin_panel_route.dart';
 part 'routes/login_route.dart';
-part 'routes/resume_route.dart';
 
 class AppRouter {
   /// use this in [MaterialApp.router]
@@ -24,9 +22,9 @@ class AppRouter {
   static final GoRouter _router = GoRouter(
     routes: $appRoutes,
     observers: _observers,
-    initialLocation: "/resume",
+    // initialLocation: "/resume",
 
-    // initialLocation: "/admin-panel",
+    initialLocation: "/admin-panel",
     // redirect: (context, state) {
     //   // print(state.location);
     // },

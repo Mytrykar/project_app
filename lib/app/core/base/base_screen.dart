@@ -18,31 +18,31 @@ mixin ResponsiveMixin on Widget {
         defaultTargetPlatform == TargetPlatform.iOS) {
       switch (responsive.activeBreakpoint.name) {
         case DeviseScreen.IPHONE:
-          widget = iPhone();
+          widget = iPhone(context);
           break;
         case DeviseScreen.IPAD:
-          widget = iPad();
+          widget = iPad(context);
           break;
         case DeviseScreen.IMAC:
-          widget = iMac();
+          widget = iMac(context);
           break;
         case DeviseScreen.MACBOOK:
-          widget = macBook();
+          widget = macBook(context);
           break;
       }
     } else {
       switch (responsive.activeBreakpoint.name) {
         case DeviseScreen.DESKTOP:
-          widget = desktop();
+          widget = desktop(context);
           break;
         case DeviseScreen.MOBILE:
-          widget = mobile();
+          widget = mobile(context);
           break;
         case DeviseScreen.DESKTOP_4K:
-          widget = desctop_4K();
+          widget = desctop_4K(context);
           break;
         case DeviseScreen.TABLET:
-          widget = tablet();
+          widget = tablet(context);
           break;
       }
     }
@@ -61,14 +61,14 @@ mixin ResponsiveMixin on Widget {
   Widget superControllerBilding(Widget child);
 
   /// Material
-  Widget? desctop_4K() => null;
-  Widget? desktop() => null;
-  Widget? mobile() => null;
-  Widget? tablet() => null;
+  Widget? desctop_4K(BuildContext? context) => null;
+  Widget? desktop(BuildContext? context) => null;
+  Widget? mobile(BuildContext? context) => null;
+  Widget? tablet(BuildContext? context) => null;
 
   /// Cupertino
-  Widget? iPhone() => null;
-  Widget? iPad() => null;
-  Widget? macBook() => null;
-  Widget? iMac() => null;
+  Widget? iPhone(BuildContext? context) => null;
+  Widget? iPad(BuildContext? context) => null;
+  Widget? macBook(BuildContext? context) => null;
+  Widget? iMac(BuildContext? context) => null;
 }

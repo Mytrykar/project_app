@@ -32,22 +32,24 @@ class AdminScreen extends BaseScreen<AdminController> {
       builder: (i) => child);
 
   @override
-  Widget? desctop_4K() => superControllerBilding(const _Desktop_4K(
+  Widget? desctop_4K(BuildContext? context) =>
+      superControllerBilding(const _Desktop_4K(
         key: Key("AdminScreen_Desktop_4K"),
         tag: tag,
       ));
   @override
-  Widget? desktop() => superControllerBilding(const _Desktop(
+  Widget? desktop(BuildContext? context) =>
+      superControllerBilding(const _Desktop(
         key: Key("AdminScreen_Desktop"),
         tag: tag,
       ));
   @override
-  Widget? mobile() => superControllerBilding(const _Mobile(
+  Widget? mobile(BuildContext? context) => superControllerBilding(const _Mobile(
         key: Key("AdminScreen_Mobile"),
         tag: tag,
       ));
   @override
-  Widget? tablet() => superControllerBilding(const _Tablet(
+  Widget? tablet(BuildContext? context) => superControllerBilding(const _Tablet(
         key: Key("AdminScreen_Tablet"),
         tag: tag,
       ));
