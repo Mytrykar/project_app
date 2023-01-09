@@ -58,6 +58,8 @@ dependencies:
   responsive_framework: ^0.2.0
   intl: ^0.17.0
   hexcolor: ^3.0.1
+  flutter_quill: ^6.1.12
+  pluto_grid: ^5.4.9
   
   
 

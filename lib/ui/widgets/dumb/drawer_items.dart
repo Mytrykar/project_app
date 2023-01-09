@@ -43,22 +43,25 @@ class DrawerItemsWidget extends StatelessWidget {
                       height: itemHeight,
                       width: width,
                       child: !isCollapsed
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(items[index].icon,
-                                    color:
-                                        _itemColor(items[index].isSelected!)),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 20),
-                                  child: Text(
-                                    items[index].item,
-                                    style: TextStyle(
-                                        color: _itemColor(
-                                            items[index].isSelected!)),
-                                  ),
-                                )
-                              ],
+                          ? Padding(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Icon(items[index].icon,
+                                      color:
+                                          _itemColor(items[index].isSelected!)),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 20),
+                                    child: Text(
+                                      items[index].item,
+                                      style: TextStyle(
+                                          color: _itemColor(
+                                              items[index].isSelected!)),
+                                    ),
+                                  )
+                                ],
+                              ),
                             )
                           : Icon(items[index].icon,
                               color: _itemColor(items[index].isSelected!)),

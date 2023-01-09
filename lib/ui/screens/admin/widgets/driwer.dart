@@ -6,6 +6,8 @@ import 'package:project_app/app/extensions/context.dart';
 import 'package:project_app/app/services/theme_servise.dart';
 import 'package:project_app/app/utils/locator.dart';
 import 'package:project_app/ui/screens/admin/performance/controller.dart';
+import 'package:project_app/ui/screens/admin/performance/screen.dart';
+import 'package:project_app/ui/screens/admin/views/constructor/performance/screen.dart';
 import 'package:project_app/ui/widgets/dumb/drawer_widget.dart';
 import 'package:project_app/ui/widgets/smart/animated_drawer.dart';
 import 'package:project_app/ui/widgets/utils/drawer_item.dart';
@@ -15,18 +17,21 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 abstract class AdminDrawer extends BaseWidget<AdminController, BaseController> {
   final double width;
   const AdminDrawer({required this.width, super.key});
+
   @override
   // ignore: overridden_fields
-  final String? superTag = "Admin";
+  final tag = AdminScreen.id;
 
   List<DrawerItem> items(BuildContext context, String currentPage) {
     return [
       DrawerItem("Home", icon: Icons.home, onTap: () {
-        superController.goToPage("Home");
-      }, item: context.tr!.constructor)
+        controller.goToPage("Home");
+      },
+          // TODO перевести [item] context.tr!.item
+          item: "Home")
         ..checkSelected(currentPage),
-      DrawerItem("Constructor", icon: Icons.construction, onTap: () {
-        superController.goToPage("Constructor");
+      DrawerItem(ConstructorView.name, icon: Icons.construction, onTap: () {
+        controller.goToPage(ConstructorView.name);
       }, item: context.tr!.constructor)
         ..checkSelected(currentPage),
     ];
@@ -48,7 +53,7 @@ class AdminDrawerWidgetMobile extends AdminDrawer {
         width: width,
         userInfo: DrawerUser(name: "Mitrykar", email: "sadasfasf@sdgsdg.sdfg"),
         footer: const SizedBox(),
-        items: items(context, superController.currentPage.value),
+        items: items(context, controller.currentPage.value),
       ),
     );
   }
@@ -65,7 +70,7 @@ class AdminDrawerWidgetTablet extends AdminDrawer {
         collapsedWidth: 50,
         height: Device.height,
         width: width,
-        items: items(context, superController.currentPage.value),
+        items: items(context, controller.currentPage.value),
       ),
     );
   }
@@ -82,7 +87,7 @@ class AdminDrawerWidgetDesktop extends AdminDrawer {
             locator<ThemeServise>().current(context).adminDrawerTheme,
         width: width,
         footer: const SizedBox(),
-        items: items(context, superController.currentPage.value),
+        items: items(context, controller.currentPage.value),
       ),
     );
   }

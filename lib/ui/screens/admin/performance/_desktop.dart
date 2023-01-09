@@ -19,22 +19,26 @@ class _Desktop extends BaseView<AdminController> {
           color: locator<ThemeServise>().current(context).currentLayoutcolor,
           index: 1,
         ),
-        actions: const [UserInAppBar()],
+        actions: [SizeWidget(), UserInAppBar()],
       ),
       backgroundColor: context.theme.backgroundColor,
-      body: Stack(
+      body: Row(
         children: [
-          const Align(
-            alignment: Alignment.centerLeft,
-            child: AdminDrawerWidgetDesktop(
-              width: 250,
-            ),
+          const AdminDrawerWidgetDesktop(
+            width: 250,
           ),
-          Center(
-              child: Text(
-            "Desktop Layout",
-            style: context.theme.textTheme.headline1,
-          )),
+          Expanded(
+            child: Obx(
+              () {
+                switch (controller.currentPage.value) {
+                  case ConstructorView.name:
+                    return ConstructorView();
+                  default:
+                    return const SizedBox();
+                }
+              },
+            ),
+          )
         ],
       ),
     );

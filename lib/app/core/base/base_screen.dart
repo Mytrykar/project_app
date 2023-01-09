@@ -1,64 +1,55 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:project_app/app/core/base/base_controller.dart';
 import 'package:project_app/app/extensions/context.dart';
 import 'package:project_app/app/utils/constants.dart';
 
-abstract class BaseScreen<T extends BaseController> extends StatelessWidget
-    with ResponsiveMixin {
-  const BaseScreen({super.key});
-}
+abstract class BaseScreen<T extends BaseController> extends StatelessWidget {
+  final T init;
+  final void Function(GetBuilderState<T>)? initState;
+  final String? tag;
 
-mixin ResponsiveMixin on Widget {
+  const BaseScreen({required this.init, this.initState, super.key, this.tag});
+
+  Widget _bildingController(Widget child) => GetBuilder<T>(
+      init: init,
+      autoRemove: false,
+      tag: tag,
+      initState: initState,
+      builder: (i) => child);
+
+  @override
   @protected
   Widget build(BuildContext context) {
     final responsive = context.responsive;
-    Widget? widget;
-    if (!kIsWeb && defaultTargetPlatform == TargetPlatform.macOS ||
-        defaultTargetPlatform == TargetPlatform.iOS) {
-      switch (responsive.activeBreakpoint.name) {
-        case DeviseScreen.IPHONE:
-          widget = iPhone(context);
-          break;
-        case DeviseScreen.IPAD:
-          widget = iPad(context);
-          break;
-        case DeviseScreen.IMAC:
-          widget = iMac(context);
-          break;
-        case DeviseScreen.MACBOOK:
-          widget = macBook(context);
-          break;
-      }
-    } else {
-      switch (responsive.activeBreakpoint.name) {
-        case DeviseScreen.DESKTOP:
-          widget = desktop(context);
-          break;
-        case DeviseScreen.MOBILE:
-          widget = mobile(context);
-          break;
-        case DeviseScreen.DESKTOP_4K:
-          widget = desctop_4K(context);
-          break;
-        case DeviseScreen.TABLET:
-          widget = tablet(context);
-          break;
-      }
+    // if (!kIsWeb && defaultTargetPlatform == TargetPlatform.macOS ||
+    //     defaultTargetPlatform == TargetPlatform.iOS) {
+    //   switch (responsive.activeBreakpoint.name) {
+    //     case DeviseScreen.IPHONE:
+    //       return _bildingController(iPhone(context)!);
+    //     case DeviseScreen.IPAD:
+    //       return _bildingController(iPad(context)!);
+    //     case DeviseScreen.IMAC:
+    //       return _bildingController(iMac(context)!);
+    //     case DeviseScreen.MACBOOK:
+    //       return _bildingController(macBook(context)!);
+    //   }
+    // } else {
+    switch (responsive.activeBreakpoint.name) {
+      case DeviseScreen.DESKTOP:
+        return _bildingController(desktop(context)!);
+      case DeviseScreen.MOBILE:
+        return _bildingController(mobile(context)!);
+      case DeviseScreen.DESKTOP_4K:
+        return _bildingController(desctop_4K(context)!);
+      case DeviseScreen.TABLET:
+        return _bildingController(tablet(context)!);
     }
-    assert(widget != null,
-        "No implementation for screen ${responsive.activeBreakpoint.name}");
-    return widget ?? const SizedBox();
+    // }
+    throw "${responsive.activeBreakpoint.name} not exist";
   }
-
-  // @override
-  // Widget superControllerBilding(Widget child) => GetBuilder(
-  //     init: AdminController(),
-  //     autoRemove: false,
-  //     tag: tag,
-  //     initState: (state) => state,
-  //     builder: (i) => child);
-  Widget superControllerBilding(Widget child);
 
   /// Material
   Widget? desctop_4K(BuildContext? context) => null;

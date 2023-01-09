@@ -15,5 +15,5 @@ part of '../router.dart';
 class AdminRoute extends GoRouteData {
   const AdminRoute();
   @override
-  Widget build(BuildContext context) => const AdminScreen();
+  Widget build(BuildContext context) => AdminScreen();
 }

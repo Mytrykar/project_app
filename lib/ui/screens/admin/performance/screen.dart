@@ -5,9 +5,11 @@ import 'package:project_app/app/core/base/base_screen.dart';
 import 'package:project_app/app/core/base/base_view.dart';
 import 'package:project_app/app/services/theme_servise.dart';
 import 'package:project_app/app/utils/locator.dart';
+import 'package:project_app/ui/screens/admin/views/constructor/performance/screen.dart';
 import 'package:project_app/ui/screens/admin/widgets/animated_setting.dart';
 import 'package:project_app/ui/screens/admin/widgets/driwer.dart';
 import 'package:project_app/ui/screens/admin/widgets/screen_type_widget.dart';
+import 'package:project_app/ui/screens/admin/widgets/size_widget.dart';
 import 'package:project_app/ui/screens/admin/widgets/user_in_app_bar.dart';
 import 'package:responsive_framework/utils/scroll_behavior.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -20,37 +22,28 @@ part '_mobile.dart';
 part '_tablet.dart';
 
 class AdminScreen extends BaseScreen<AdminController> {
-  static const String tag = "Admin";
-  const AdminScreen({super.key});
+  static const String id = "Admin-panel";
+  AdminScreen({super.key})
+      : super(init: AdminController(), initState: null, tag: AdminScreen.id);
 
   @override
-  Widget superControllerBilding(Widget child) => GetBuilder(
-      init: AdminController(),
-      autoRemove: false,
-      tag: tag,
-      // initState: (state) => state,
-      builder: (i) => child);
-
-  @override
-  Widget? desctop_4K(BuildContext? context) =>
-      superControllerBilding(const _Desktop_4K(
-        key: Key("AdminScreen_Desktop_4K"),
+  Widget? desctop_4K(BuildContext? context) => _Desktop_4K(
+        key: const Key("AdminScreen_Desktop_4K"),
         tag: tag,
-      ));
+      );
   @override
-  Widget? desktop(BuildContext? context) =>
-      superControllerBilding(const _Desktop(
-        key: Key("AdminScreen_Desktop"),
+  Widget? desktop(BuildContext? context) => _Desktop(
+        key: const Key("AdminScreen_Desktop"),
         tag: tag,
-      ));
+      );
   @override
-  Widget? mobile(BuildContext? context) => superControllerBilding(const _Mobile(
-        key: Key("AdminScreen_Mobile"),
+  Widget? mobile(BuildContext? context) => _Mobile(
+        key: const Key("AdminScreen_Mobile"),
         tag: tag,
-      ));
+      );
   @override
-  Widget? tablet(BuildContext? context) => superControllerBilding(const _Tablet(
-        key: Key("AdminScreen_Tablet"),
+  Widget? tablet(BuildContext? context) => _Tablet(
+        key: const Key("AdminScreen_Tablet"),
         tag: tag,
-      ));
+      );
 }

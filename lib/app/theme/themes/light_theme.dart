@@ -15,6 +15,6 @@ class LightTheme extends BaseTheme {
             currentLayoutcolor: Colors.blue,
             adminDrawerTheme: const AdminDrawerTheme(
                 backgroundColor: Color.fromARGB(255, 12, 19, 51),
-                itemColor: Colors.black,
+                itemColor: Colors.white,
                 selectItemColor: Colors.blue));
 }
