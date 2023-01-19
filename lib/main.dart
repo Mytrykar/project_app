@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:project_app/app/app.dart';
 
@@ -9,5 +10,5 @@ main() async {
   await LocatorInjector.setupLocator();
 
   /// Runs the app :)
-  runApp(const ProjectApp());
+  runApp(const ProviderScope(child: ProjectApp()));
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:project_app/app/core/base/base_servise.dart';
 import 'package:project_app/app/core/base/base_theme.dart';
+import 'package:project_app/app/extensions/context.dart';
 import 'package:project_app/app/theme/app_theme.dart';
 
 class ThemeServise extends BaseService {
@@ -28,22 +28,12 @@ class ThemeServise extends BaseService {
     _currendDarkTheme = AppTheme.defaultDarkTheme;
   }
 
-  void setThemeToNamed(String nameTheme) {
-    BaseTheme? newTheme = AppTheme.themes
-        .firstWhereOrNull((element) => element.nameTheme == nameTheme);
-    if (newTheme == null) {
-      throw Exception("Topic name error $nameTheme, or it doesn't exist");
-    }
-    if (nameTheme == _currentLightTheme.nameTheme ||
-        nameTheme == _currendDarkTheme.nameTheme) {
-      return;
-    }
+  void changeTheme(BaseTheme theme,{Brightness? brightness}) {
     log.i(
-        "Switch theme event: new ${newTheme.brightness.name}Theme $nameTheme");
-    newTheme.brightness == Brightness.light
-        ? _currentLightTheme = newTheme
-        : _currendDarkTheme = newTheme;
+        "Switch theme event: new ${theme.brightness.name}Theme ${brightness == Brightness.light ? _currentLightTheme : _currendDarkTheme}");
+    if(brightness != null && theme.brightness != brightness){
+      
+    }
 
-    Get.changeTheme(newTheme.theme);
   }
 }

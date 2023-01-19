@@ -1,16 +1,14 @@
 part of 'screen.dart';
 
-const List<int> pageContentRows = [10, 20, 50, 100];
-
-class ConstructorController extends BaseController {
+class ConstructorController extends Notifier {
   /// Строки
-  RxMap<int, List<PlutoRow>> rows = <int, List<PlutoRow>>{}.obs;
+  Map<int, List<PlutoRow>> rows = <int, List<PlutoRow>>{};
 
   /// Число відтворюваних строк контента
   late int pageRows;
 
   /// Число сторінок данних
-  RxInt pages = 0.obs;
+  int pages = 0;
 
   @override
   void onInit() async {
@@ -73,6 +71,12 @@ class ConstructorController extends BaseController {
     rows.clear();
     final data = mockPlutoRows;
     countPages(data);
+  }
+
+  @override
+  FutureOr build() {
+    // TODO: implement build
+    throw UnimplementedError();
   }
 }
 

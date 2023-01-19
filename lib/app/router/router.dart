@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logger/logger.dart';
 import 'package:project_app/app/utils/logger.dart';
-import 'package:project_app/ui/screens/admin/performance/screen.dart';
+import 'package:project_app/ui/screens/admin/admin_screen.dart';
 import 'package:project_app/ui/widgets/dumb/error_widget.dart' as e;
 
 part 'observer.dart';

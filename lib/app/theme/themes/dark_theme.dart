@@ -3,7 +3,6 @@ part of '../app_theme.dart';
 class DarkTheme extends BaseTheme {
   DarkTheme()
       : super(
-            nameTheme: "base_dark",
             brightness: Brightness.dark,
             colorScheme: const ColorScheme.dark(),
             iconThemeData: const IconThemeData(color: Colors.grey, size: 20),

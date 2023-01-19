@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 // !T!Це базова тема додатка, розширьте її щоб створити теми додатка.
-abstract class BaseTheme {
-  final String nameTheme;
+class BaseTheme {
   final Brightness brightness;
   final IconThemeData iconThemeData;
   final ColorScheme colorScheme;
@@ -16,7 +15,6 @@ abstract class BaseTheme {
       required this.currentLayoutcolor,
       required this.headline1,
       required this.backgroundColor,
-      required this.nameTheme,
       required this.brightness,
       required this.iconThemeData,
       required this.colorScheme});
@@ -28,6 +26,24 @@ abstract class BaseTheme {
         appBarTheme: AppBarTheme(actionsIconTheme: iconThemeData),
         backgroundColor: backgroundColor,
         textTheme: TextTheme(headline1: headline1));
+  }
+
+  BaseTheme copyWith(
+      {Brightness? brightness,
+      IconThemeData? iconThemeData,
+      ColorScheme? colorScheme,
+      Color? backgroundColor,
+      TextStyle? headline1,
+      Color? currentLayoutcolor,
+      AdminDrawerTheme? adminDrawerTheme}) {
+    return BaseTheme(
+        adminDrawerTheme: adminDrawerTheme ?? this.adminDrawerTheme,
+        backgroundColor: backgroundColor ?? this.backgroundColor,
+        brightness: brightness ?? this.brightness,
+        colorScheme: colorScheme ?? this.colorScheme,
+        currentLayoutcolor: currentLayoutcolor ?? this.currentLayoutcolor,
+        headline1: headline1 ?? this.headline1,
+        iconThemeData: iconThemeData ?? this.iconThemeData);
   }
 }
 

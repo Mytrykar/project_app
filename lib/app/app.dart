@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:go_router/go_router.dart';
 import 'package:project_app/app/services/theme_servise.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
@@ -15,7 +14,7 @@ class ProjectApp extends StatelessWidget {
   GoRouter get _router => AppRouter.router;
   @override
   Widget build(BuildContext context) => ResponsiveSizer(
-      builder: (context, __, _) => GetMaterialApp.router(
+      builder: (context, __, _) => MaterialApp.router(
             title: "project_app",
             routeInformationParser: _router.routeInformationParser,
             routerDelegate: _router.routerDelegate,
